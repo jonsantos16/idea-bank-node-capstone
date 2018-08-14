@@ -1,5 +1,5 @@
 ## "Idea Bank" | Thinkful Node Capstone
-The Shakespeare Passport app is designed for Theatrical Performers, Theatre Goers, and Theatre enthusiast alike. It allows a User to compile a list of plays by SEEN, PERFORMED, and READ tracking date and location.
+The Eureka app is an idea-sharing platform made for organizations like para-churches to connect ideas that different members have to benefit the community at large. It allows ideas to be shared so all users, regardless of physical location, and quickly see and learn how to implement the idea.
 
 ## Screenshots
 

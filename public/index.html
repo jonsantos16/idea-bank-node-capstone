@@ -3,18 +3,34 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Idea Bank: Home Page</title>
+    <title>Eureka - Share Your Ideas</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <link href="styles.css" rel="stylesheet" type="text/css" />
+    <link href="grid.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
     <nav>
-        <i class="fas fa-home"></i>
-        <i class="fas fa-sticky-note"></i>
-        <i class="fas fa-lightbulb"></i>
-        <i class="fas fa-sign-out-alt"></i>
+        <div class="nav">
+                <img src="images/Eureka.png" alt="Eureka logo" class="logo">
+            <div class="search-bar">
+                <form>
+                    <label><input class="js-query" type="text"></label>
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <div class="menu-items">
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i></a></li>
+                    <li><a href="#"><i class="fas fa-sticky-note"></i></a></li>
+                    <li><a href="#"><i class="fas fa-lightbulb"></i></a></li>
+                    <li><a href="#"><i class="fas fa-sign-out-alt"></i></a></li>
+                </ul>
+            </div>
+        </div>    
+            
     </nav>
     <main>
+        
         <section id="signup-page">
             <form class ="signup">
                 <label>First Name: <input name="firstname" type="text"></label>
@@ -37,21 +53,69 @@
         </section>
 
         <section class="landing-page">
-          <div class="search-bar">
-            <form>
-                <label><input class="js-query" tyep="text"></label>
-                <button type="submit"><i class="fas fa-search"></i></button>
-              </form>
-          </div>
-          <div class="results">
-
-          </div>>  
+            <div class="results">
+                <div class="row">
+                    <div class="single-result">
+                        <h3><a href="#">Title</a></h3>
+                        <img src="images/img_lights.jpg" alt="image">
+                        <p>Author</p>
+                        <p>Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content</p>
+                    </div>
+                    <div class="single-result">
+                        <h3><a href="#">Title</a></h3>
+                        <img src="images/img_lights.jpg" alt="image">
+                        <p>Author</p>
+                        <p>Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content</p>
+                    </div>
+                    <div class="single-result">
+                        <h3><a href="#">Title</a></h3>
+                        <img src="images/img_lights.jpg" alt="image">
+                        <p>Author</p>
+                        <p>Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="single-result">
+                        <h3><a href="#">Title</a></h3>
+                        <img src="images/img_lights.jpg" alt="image">
+                        <p>Author</p>
+                        <p>Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content</p>
+                    </div>
+                    <div class="single-result">
+                        <h3><a href="#">Title</a></h3>
+                        <img src="images/img_lights.jpg" alt="image">
+                        <p>Author</p>
+                        <p>Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content</p>
+                    </div>
+                    <div class="single-result">
+                        <h3><a href="#">Title</a></h3>
+                        <img src="images/img_lights.jpg" alt="image">
+                        <p>Author</p>
+                        <p>Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content</p>
+                    </div>
+                </div>    
+            </div>>  
         </section>
 
         <section class="my-account">
+            <div class="acct-heading">
+                <h2>Filler Text</h2>
+            </div>
+            <div class="acct-results">
 
+            </div>
         </section>
         
+        <section class="new-post">
+            <div>
+                <form class ="create-post">
+                    <label>Title: <input name="new-title" type="text"></label>
+                    <label>Image: <input name="new-image" type="file" accept="image/*"></label>
+                    <label>Content: <input name="new-content" type="text"></label>
+                    <button type="submit" name="submit" >Submit</button>
+                </form>
+            </div>
+        </section>
     </main>
     
     <script src="client.js"></script>
