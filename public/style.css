@@ -33,15 +33,90 @@ table {
 	border-spacing: 0;
 }
 
+html {
+    /* background-image: url(images/notebook-bg-1.jpg); */
+    background-color: #ffffe6;
+    background-repeat: no-repeat;
+    background-repeat: cover;
+}
+
+/* Main */
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    width: 120%;
+    font-size: 20px;
+}
+
+a:link, a:visited {
+    color: black;
+}
 
 /* Nav */
 input, button {
     border: 1px solid gray;
     padding: 5px;
     border-radius: 3px;
+}
+
+input {
     margin-left: 10px;
     margin-right: 10px;
 }
+
+.menu-items li {
+    /* list-style-type: none; */
+    display: inline-block
+}
+
+.menu-items i {
+    font-size: 36px;
+}
+
+li {
+    padding: 5px;
+}
+
+nav img {
+    width: 120px;
+}
+
+.search-bar input {
+    width: 75%;
+}
+
+.nav {
+    position: relative;
+}
+
+.menu-items ul {
+    position: absolute;
+    right: 0px;
+}
+
+/* ASK MENTOR HELP VERT ALIGN WITH RESPONSIVE */
+
+
+/* Forms pages */
+.signup, .login {
+    font-family: 'Kalam', cursive;
+    border: 1px solid black;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 18px;
+    /* line-height: 1.6;
+}
+
+
+/* Main */
+section img {
+    width: 95%;
+}
+
+/* Nav
 
 .nav {
     position: relative;
@@ -65,60 +140,70 @@ button {
 .menu-items i {
     font-size: 36px;
     /* position: absolute; */
-}
+/* } */
 
-.menu-items li {
+/* .menu-items li {
     list-style-type: none;
     display: inline-block;
     margin-left: 12px;
     right: 0px;
-}
+} */
 
-.search-bar {
+/* .search-bar {
     position: absolute;
     top: 50%;
     left: 30%;
 }
 
-div.search-bar {
-    width: 400px;
-}
-
 .search-bar input {
-    width: 300px;
+    width: 250px;
 }
 
 .menu-items {
     position: absolute;
-    right: 5px;
+    right: 4px;
     top: 50%;
 }
 
 /* Sign Up */
-label {
+
+/* label {
     display: inline-block;
-    margin: ;
+    margin-bottom: 20px;
 }
 
 section {
-    padding-top: 250px;
-}
+    padding-top: 80px;
+} */
 
-.signup {
+/* h6 {
+    text-align: center;
+    font-family: 'Kalam', cursive;
+    line-height: 200%;
+} */
+
+/* .signup, .login {
+    font-family: 'Kalam', cursive;
     border: 1px solid black;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
-    /* padding: 18px; */
-    /* line-height: 10px; */
+    padding: 18px;
+    /* line-height: 1.6; */
+/* } */
+
+/* .signup button {
+    display: block;
 }
 
-
+.login button {
+    display: block;
+}
 
 /* Results */
 
 
-.single-result {
+/* .single-result {
     width: 31%;
     display: inline-block;
     margin-left: 1%;
@@ -129,4 +214,9 @@ section {
 
 .single-result img {
     width: 100%;
-}
+} */
+
+/* Account */
+/* .my-result img {
+    
+} */
