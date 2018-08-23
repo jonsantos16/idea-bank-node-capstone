@@ -1,26 +1,26 @@
 {
     "name": "idea-bank-node-capstone",
     "version": "1.0.0",
-    "description": "The Shakespeare Passport app is designed for Theatrical Performers, Theatre Goers, and Theatre enthusiast alike. It allows a User to compile a list of plays by SEEN, PERFORMED, and READ tracking date and location.",
+    "description": "The Eureka app is an idea-sharing platform made for organizations like para-churches to connect ideas that different members have to benefit the community at large. It allows ideas to be shared so all users, regardless of physical location, and quickly see and learn how to implement the idea.",
     "main": "server.js",
     "dependencies": {
-        "bcrypt": "^0.8.7",
-        "bcryptjs": "^2.3.0",
-        "body-parser": "^1.15.2",
+        "bcrypt": "^3.0.0",
+        "bcryptjs": "^2.4.3",
+        "body-parser": "^1.18.3",
         "cors": "^2.8.4",
         "express": "^4.16.3",
-        "moment": "^2.18.1",
-        "mongodb": "^2.2.9",
-        "mongoose": "^4.5.10",
-        "passport": "^0.3.2",
+        "moment": "^2.22.2",
+        "mongodb": "^3.1.3",
+        "mongoose": "^5.2.9",
+        "passport": "^0.4.0",
         "passport-http": "^0.3.0",
         "unirest": "^0.5.1"
     },
     "devDependencies": {
-        "chai": "^3.5.0",
-        "chai-http": "^3.0.0",
-        "faker": "^3.1.0",
-        "mocha": "^3.5.3"
+        "chai": "^4.1.2",
+        "chai-http": "^4.0.0",
+        "faker": "^4.1.0",
+        "mocha": "^5.2.0"
     },
     "scripts": {
         "test": "mocha",

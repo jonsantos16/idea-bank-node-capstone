@@ -40,18 +40,53 @@ html {
     background-repeat: cover;
 }
 
+h1 {
+    font-size: 30px;
+}
+
+h2 {
+    font-size: 26px;
+}
+
+h3 {
+    font-size: 22px;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+h6 {
+    font-size: 15px;
+}
+
+
+
 /* Main */
+html {
+    background-image: url(images/);
+    font-family: 'Kalam', cursive;
+}
+
 a {
     text-decoration: none;
 }
 
 a:hover {
     width: 120%;
-    font-size: 20px;
+    font-size: 22px;
 }
 
 a:link, a:visited {
     color: black;
+}
+
+section {
+    margin-top: 30px;
 }
 
 /* Nav */
@@ -67,7 +102,6 @@ input {
 }
 
 .menu-items li {
-    /* list-style-type: none; */
     display: inline-block
 }
 
@@ -92,131 +126,93 @@ nav img {
 }
 
 .menu-items ul {
-    position: absolute;
-    right: 0px;
+    float: right;
 }
 
-/* ASK MENTOR HELP VERT ALIGN WITH RESPONSIVE */
+.search-bar, .menu-items {
+    margin-top: 45px;
+}
 
 
 /* Forms pages */
-.signup, .login {
+.signup, .login, .create-post {
     font-family: 'Kalam', cursive;
     border: 1px solid black;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
     padding: 18px;
-    /* line-height: 1.6;
 }
 
 
-/* Main */
+.signup label, .login label, .create-post label {
+    display: block;
+    width: 100%;
+}
+
+span {
+    display: inline-block;
+    width: 84px;
+}
+
+.signup input, .login input, .create-post input {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.signup button, .login button, .create-post button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+fieldset {
+    text-align: center;
+}
+
+#signup-page, #login-page, .new-post {
+    text-align: center;
+}
+
+/* Results */
 section img {
     width: 95%;
 }
 
-/* Nav
-
-.nav {
-    position: relative;
-    width: 100%;
-    height: 20%; 
+.results .row {
+    margin-top: 20px;
 }
-
-nav div {
-    display: inline-block;
-}
-
-nav img {
-    height: 120px;
-}
-
-button {
-    border: 2px solid gray;
-    padding: 3px 15px;
-}
-
-.menu-items i {
-    font-size: 36px;
-    /* position: absolute; */
-/* } */
-
-/* .menu-items li {
-    list-style-type: none;
-    display: inline-block;
-    margin-left: 12px;
-    right: 0px;
-} */
-
-/* .search-bar {
-    position: absolute;
-    top: 50%;
-    left: 30%;
-}
-
-.search-bar input {
-    width: 250px;
-}
-
-.menu-items {
-    position: absolute;
-    right: 4px;
-    top: 50%;
-}
-
-/* Sign Up */
-
-/* label {
-    display: inline-block;
-    margin-bottom: 20px;
-}
-
-section {
-    padding-top: 80px;
-} */
-
-/* h6 {
-    text-align: center;
-    font-family: 'Kalam', cursive;
-    line-height: 200%;
-} */
-
-/* .signup, .login {
-    font-family: 'Kalam', cursive;
-    border: 1px solid black;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 18px;
-    /* line-height: 1.6; */
-/* } */
-
-/* .signup button {
-    display: block;
-}
-
-.login button {
-    display: block;
-}
-
-/* Results */
-
-
-/* .single-result {
-    width: 31%;
-    display: inline-block;
-    margin-left: 1%;
-    margin-right: 1%;
-    margin-bottom: 15px;
-    padding: 10px;
-}
-
-.single-result img {
-    width: 100%;
-} */
 
 /* Account */
-/* .my-result img {
-    
-} */
+.my-posts .row {
+    margin-top: 20px;
+}
+
+.my-account h2 {
+    text-align: center
+}
+
+
+
+/* 1 Post */
+.view-one h3 {
+    text-align: center;
+}
+
+.view-one .row {
+    margin-top: 20px;
+}
+
+/* New Post */
+
+.create-post h3 {
+    text-align: center;
+}
+
+.upload {
+    display: inline-block;
+    width: 75%;
+}
+
+.create-post label, .create-post button {
+    margin-top: 20px;
+}

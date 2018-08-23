@@ -6,13 +6,13 @@
     <title>Eureka - Share Your Ideas</title>
     <link href="https://fonts.googleapis.com/css?family=Kalam|Shadows+Into+Light" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <link href="grid.css" rel="stylesheet" type="text/css" />
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="grid.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
     <nav>
         <div class="nav row">
-                <div class="col-3">
+                <div class="logo col-3">
                     <img src="images/Eureka.png" alt="Eureka logo" class="logo">
                 </div> 
                 <div class="search-bar col-3">
@@ -23,10 +23,10 @@
                 </div>
                 <div class="menu-items col-3">
                     <ul>
-                        <li><a href="#"><i class="fas fa-home"></i></a></li>
-                        <li><a href="#"><i class="fas fa-sticky-note"></i></a></li>
-                        <li><a href="#"><i class="fas fa-lightbulb"></i></a></li>
-                        <li><a href="#"><i class="fas fa-sign-out-alt"></i></a></li>
+                        <li><a id="go-home" href="#"><i class="fas fa-home"></i></a></li>
+                        <li><a id="go-new" href="#"><i class="fas fa-sticky-note"></i></a></li>
+                        <li><a id="go-acct" href="#"><i class="fas fa-lightbulb"></i></a></li>
+                        <li><a class="go-login" href="#"><i class="fas fa-sign-out-alt"></i></a></li>
                     </ul>
                 </div>  
         </div>    
@@ -35,123 +35,123 @@
         
         <section id="signup-page">
             <div class="row">
-                <div class="col-3">
-                        <form class ="signup">
-                            <label>First Name: <input name="firstname" type="text"></label>
-                            <label>Last Name: <input name="lastname" type="text"></label>
-                            <label>Email: <input name="email" type="email"></label>
-                            <label>Username: <input name="username" type="text"></label>
-                            <label>Password: <input name="password" type="text"></label>
-                            <button type="submit" name="submit" >Submit</button>
-                        </form>
-                        <h6>Already have an account? Log In Here!</h6>
-                </div>
-
+                <form class ="signup">
+                    <h2>Sign Up</h2>
+                    <fieldset>
+                        <label><span>First Name:</span><input name="firstname" class="signUpFN" value="jonathan" type="text"></label>
+                        <label><span>Last Name:</span><input name="lastname" class="signUpLN"
+                        value="santos" type="text"></label>
+                        <label><span>Email:</span><input name="email" class="signUpEmail" value="santosjn94@gmail.com" type="email"></label>
+                        <label><span>Username:</span><input name="username" class="signUpUsername" value="jsantos" type="text"></label>
+                        <label><span>Password:</span><input name="password" class="signUpPw" value="password" type="text"></label>
+                        <button type="submit" name="submit" >Submit</button>
+                    </fieldset>
+                </form>
+                <h6>Already have an account? Log In <a class="go-login">Here</a>!</h6>
             </div>
                 
         </section>
        
         <section id="login-page">
             <div class="row">
-                <div class="col-3">
-                    <form class ="login">
-                        <label>Username: <input name="username" type="text"></label>
-                        <label>Password: <input name="password" type="text"></label>
+                <form class ="login">
+                    <h2>Log In</h2>
+                    <fieldset>
+                        <label><span>Username: </span><input name="username" type="text"></label>
+                        <label><span>Password:</span><input name="password" type="text"></label>
                         <button type="submit" name="submit" >Submit</button>
-                    </form>
-                    <h6>Are you new here? Sign Up Here!</h6>
-                </div>
-            </div>
-
-            
+                    </fieldset> 
+                </form>
+                <h6>Are you new here? Sign Up <a id="go-signup">Here</a>!</h6>
+            </div>   
         </section>
 
         <section class="landing-page">
+            <div class="query-string">
+                
+            </div>
             <div class="results">
                 <div class="row">
                     <div class="col-3 single-result">
-                        <h3><a href="#">Title</a></h3>
+                        <h4><a href="#">Title</a></h4>
                         <img src="images/img_lights.jpg" alt="image">
-                        <p>Author Author</p>
-                        <p>Content...</p>
                     </div>
                     <div class="col-3 single-result">
-                        <h3><a href="#">Title</a></h3>
+                        <h4><a href="#">Title</a></h4>
                         <img src="images/img_lights.jpg" alt="image">
-                        <p>Author Author</p>
-                        <p>Content...</p>
                     </div>
                     <div class="col-3 single-result">
-                        <h3><a href="#">Title</a></h3>
+                        <h4><a href="#">Title</a></h4>
                         <img src="images/img_lights.jpg" alt="image">
-                        <p>Author Author</p>
-                        <p>Content...</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-3 single-result">
-                        <h3><a href="#">Title</a></h3>
+                        <h4><a href="#">Title</a></h4>
                         <img src="images/img_lights.jpg" alt="image">
-                        <p>Author Author</p>
-                        <p>Content...</p>
                     </div>
                     <div class="col-3 single-result">
-                        <h3><a href="#">Title</a></h3>
+                        <h4><a href="#">Title</a></h4>
                         <img src="images/img_lights.jpg" alt="image">
-                        <p>Author Author</p>
-                        <p>Content...</p>
                     </div>
                     <div class="col-3 single-result">
-                        <h3><a href="#">Title</a></h3>
+                        <h4><a href="#">Title</a></h4>
                         <img src="images/img_lights.jpg" alt="image">
-                        <p>Author Author</p>
-                        <p>Content...</p>
                     </div>
                  
             </div>  
         </section>
 
         <section class="my-account">
-            <div class="acct-heading">
-                <h2>Andres Fonseca</h2>
-                    <div class="my-posts row">
-                        <div class="my-result col-2">
-                            <h3><a href="#">Title</a></h3>
-                            <img src="images/img_lights.jpg" alt="image">
-                            <p>Author Author</p>
-                            <p>Content...</p>
-                        </div>
-                        <div class="my-result col-2">
-                            <h3><a href="#">Title</a></h3>
-                            <img src="images/img_lights.jpg" alt="image">
-                            <p>Author Author</p>
-                            <p>Content...</p>
-                        </div>
-                        <div class="my-result col-2">
-                            <h3><a href="#">Title</a></h3>
-                            <img src="images/img_lights.jpg" alt="image">
-                            <p>Author Author</p>
-                            <p>Content...</p>
-                        </div>
+            <h2>Andres Fonseca</h2>
+            <div class="my-posts ">
+                <div class="row">
+                    <div class="my-result col-2">
+                        <h4><a href="#">Title</a></h4>
+                        <img src="images/img_lights.jpg" alt="image">
                     </div>
-            </div>
-            <div class="acct-results">
-
+                    <div class="my-result col-2">
+                        <h4><a href="#">Title</a></h4>
+                        <img src="images/img_lights.jpg" alt="image">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="my-result col-2">
+                        <h4><a href="#">Title</a></h4>
+                        <img src="images/img_lights.jpg" alt="image">
+                    </div>
+                </div>
             </div>
         </section>
         
         <section class="new-post">
             <div class="row">
-                <form class ="create-post col-3">
-                    <label>Title: <input name="new-title" type="text"></label>
-                    <label>Image: <input name="new-image" type="file" accept="image/*"></label>
-                    <label>Content: <input name="new-content" type="text"></label>
-                    <button type="submit" name="submit" >Submit</button>
+                <form class ="create-post">
+                    <h3>Share Your Idea:</h3>
+                    <fieldset>
+                        <label><span>Title: </span><input name="new-title" type="text"></label>
+                        <label><span>Image: </span><input name="new-image" type="file" accept="image/*" class="upload"></label>
+                        <label><span>Content: </span><textarea rows=5 cols="30" class="upload"></textarea></label>
+                        <button type="submit" name="submit" >Submit</button>
+                    </fieldset>
                 </form>
             </div>
         </section>
+
+        <section class="view-one">
+            <h3>Title</h3>
+            <div class="row">
+                <div class="col-2">
+                    <img src="images/img_lights.jpg" alt="image">
+                </div>
+                <div class="col-2">
+                    <h5>By: Author Author</h5>
+                    <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h5>
+                </div>
+            </div>
+        </section>
     </main>
-    
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="client.js"></script>
-  </body>
+    </body>
 </html>

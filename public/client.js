@@ -15,75 +15,234 @@ var MOCK_POSTS = {
             "created": ""
         },
         {
-            "id": "7UZJ973",
-            "title": "Proper Welcome Setup",
-            "author": "Mary Shannonhouse",
-            "content": "Here is my protocol...",
-            "created": ""
-        },
-        {
-            "id": "8NFS028",
-            "title": "4-Square Volleyball",
-            "author": "Juan Pablo",
-            "content": "Here are the instructions...",
-            "created": ""
-        },
-        {
-            "id": "9ATZ137",
-            "title": "Backgrounds for Propre",
-            "author": "Sally Vanderbilt",
+            "id": "6YGN964",
+            "title": "Triangle meatballs",
+            "author": "Andres Fonseca",
             "content": "Follow these steps...",
             "created": ""
         },
         {
-            "id": "7IDA802",
-            "title": "Basketball Post-TFN",
-            "author": "Taylor Pennyworth",
+            "id": "5XBH046",
+            "title": "Dongle organizer",
+            "author": "Julianna Anton",
             "content": "Check it out...",
             "created": ""
         },
         {
-            "id": "7AFF097",
-            "title": "Fun small-group icebreaker",
-            "author": "Mark Poche",
+            "id": "6YGN964",
+            "title": "Triangle meatballs",
+            "author": "Andres Fonseca",
             "content": "Follow these steps...",
             "created": ""
         },
         {
-            "id": "4VHE085",
-            "title": "Fun large-group icebreaker",
-            "author": "Samantha Solis",
+            "id": "5XBH046",
+            "title": "Dongle organizer",
+            "author": "Julianna Anton",
             "content": "Check it out...",
             "created": ""
         },
         {
-            "id": "4DQN892",
-            "title": "Interesting outreach idea",
-            "author": "Raina Billows",
+            "id": "6YGN964",
+            "title": "Triangle meatballs",
+            "author": "Andres Fonseca",
             "content": "Follow these steps...",
             "created": ""
         },
         {
-            "id": "7TNJ024",
-            "title": "Epic Sports Challenge",
-            "author": "Savannah Lee",
+            "id": "5XBH046",
+            "title": "Dongle organizer",
+            "author": "Julianna Anton",
             "content": "Check it out...",
             "created": ""
         },
         {
-            "id": "8AXK094",
-            "title": "Fun Post Game",
-            "author": "Jedediah Smith",
+            "id": "6YGN964",
+            "title": "Triangle meatballs",
+            "author": "Andres Fonseca",
             "content": "Follow these steps...",
             "created": ""
         },
         {
-            "id": "8ENE031",
-            "title": "Awesome outreach idea",
-            "author": "Bartholomew Winston",
+            "id": "5XBH046",
+            "title": "Dongle organizer",
+            "author": "Julianna Anton",
+            "content": "Check it out...",
+            "created": ""
+        },
+        {
+            "id": "6YGN964",
+            "title": "Triangle meatballs",
+            "author": "Andres Fonseca",
+            "content": "Follow these steps...",
+            "created": ""
+        },
+        {
+            "id": "5XBH046",
+            "title": "Dongle organizer",
+            "author": "Julianna Anton",
             "content": "Check it out...",
             "created": ""
         },
     ]
 }
 
+// Shows one section only
+function showSignUp() {
+    $('#login-page').hide();
+    $('.landing-page').hide();
+    $('.my-account').hide();
+    $('.new-post').hide();
+    $('.view-one').hide();
+    $('.search-bar').hide();
+    $('.menu-items').hide();
+    $('#signup-page').show();
+}
+
+function showLogin() {
+    $('#signup-page').hide();
+    $('.landing-page').hide();
+    $('.my-account').hide();
+    $('.new-post').hide();
+    $('.view-one').hide();
+    $('.search-bar').hide();
+    $('.menu-items').hide();
+    $('#login-page').show();
+}
+
+function showLanding() {
+    $('#login-page').hide();
+    $('#signup-page').hide();
+    $('.my-account').hide();
+    $('.new-post').hide();
+    $('.view-one').hide();
+    $('.landing-page').show();
+    $('.search-bar').show();
+    $('.menu-items').show();
+}
+
+function showAccount() {
+    $('#login-page').hide();
+    $('#signup-page').hide();
+    $('.landing-page').hide();
+    $('.new-post').hide();
+    $('.view-one').hide();
+    $('.my-account').show();
+    $('.search-bar').show();
+    $('.menu-items').show();
+}
+
+function showOnePost() {
+    $('#login-page').hide();
+    $('#signup-page').hide();
+    $('.my-account').hide();
+    $('.new-post').hide();
+    $('.landing-page').hide();
+    $('.view-one').show();
+    $('.search-bar').show();
+    $('.menu-items').show();
+}
+
+function showNewPost() {
+    $('#login-page').hide();
+    $('#signup-page').hide();
+    $('.my-account').hide();
+    $('.landing-page').hide();
+    $('.view-one').hide();
+    $('.new-post').show();
+    $('.search-bar').show();
+    $('.menu-items').show();
+}
+
+function handleClicks() {
+    $('.go-login').click(function() {
+        showLogin();
+    });
+    $('#go-signup').click(function() {
+        showSignUp();
+    });
+    $('#go-home').click(function() {
+        showLanding();
+    });
+    $('#go-acct').click(function() {
+        showAccount();
+    });
+    $('#go-new').click(function() {
+        showNewPost();
+    });
+}
+
+showSignUp();
+$(handleClicks());
+
+
+$('.login').find('button').on('click', function() {
+    event.preventDefault();
+    console.log('logging in');
+    // Should make AJAX call for users, authenticate the user, and either go back to login or go to landing page
+    showLanding();
+    // At landing page, should make AJAX call for most recent posts
+});
+
+$('.signup').find('button').on('click', function() {
+    event.preventDefault();
+    console.log('sign me up');
+    
+    //take the input from the user
+    const firstName = $(".signUpFN").val();
+    const lastName = $(".signUpLN").val();
+    const email = $(".signUpEmail").val();
+    const username = $(".signUpUsername").val();
+    const password = $(".signUpPw").val();
+
+    //validate the input
+    if (firstName == "") {
+        alert('Please add a first name');
+    } else if (lastName == "") {
+        alert('Please add a last name');
+    } else if (email == "") {
+        alert('Please add an email address');
+    } else if (username == "") {
+        alert('Please add an user name');
+    } else if (password == "") {
+        alert('Please add a password');
+    }
+    //if the input is valid
+    else {
+        //create the payload object (what data we send to the api call)
+        const newUserObject = {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            username: username,
+            password: password
+        };
+        console.log(newUserObject);
+
+        //make the api call using the payload above
+        $.ajax({
+                type: 'POST',
+                url: '/users/create',
+                dataType: 'json',
+                data: JSON.stringify(newUserObject),
+                contentType: 'application/json'
+            })
+            //if call is succefull
+            .done(function (result) {
+                console.log(result);
+                // $('#loggedInName').text(result.name);
+                // $('#loggedInUserName').val(result.username);
+                // $('section').hide();
+                // $('.navbar').show();
+                // $('#user-dashboard').show();
+                // populateUserDashboardDate(result.username);
+                showLogin();
+            })
+            //if the call is failing
+            .fail(function (jqXHR, error, errorThrown) {
+                console.log(jqXHR);
+                console.log(error);
+                console.log(errorThrown);
+            });
+    };
+})

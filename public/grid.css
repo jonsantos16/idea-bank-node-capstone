@@ -73,3 +73,47 @@
         width: 100%
     }
   }
+
+  @media only screen and (max-width: 662px) {
+    .signup, .login, .create-post {
+      width: 65%;
+    }
+  }
+
+  @media only screen and (max-width: 522px) {
+    .signup, .login, .create-post {
+      width: 75%;
+    }
+  }
+
+  @media only screen and (max-width: 759px) {
+    .nav .col-3 {
+      width: 100%;
+    }
+
+    .search-bar input {
+      width: 50%;
+    }
+
+    .search-bar label {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .search-bar, .menu-items {
+      margin-top: 5px;
+    }
+
+    .nav form, .menu-items {
+      text-align: center;
+    }
+
+    .menu-items ul {
+      float: none;
+      text-align: center;
+    }
+
+    .logo {
+      text-align: center;
+    }
+  }
