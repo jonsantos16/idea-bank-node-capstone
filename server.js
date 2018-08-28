@@ -18,7 +18,7 @@ mongoose.Promise = global.Promise;
 
 // ---------------- RUN/CLOSE SERVER -----------------------------------------------------
 let server = undefined;
-
+// Creates a promise, finds what database to use, port is how you call one function in a server, when listening to a port, this port corresponds to the database 
 function runServer(urlToUse) {
     return new Promise((resolve, reject) => {
         mongoose.connect(urlToUse, err => {
@@ -35,11 +35,11 @@ function runServer(urlToUse) {
         });
     });
 }
-
+// if running directly, nothing. if run indirectly, like from test where it's imported as a module, specify database url to use. terminal will know which database to use but running indirectly, won't know which to use
 if (require.main === module) {
     runServer(config.DATABASE_URL).catch(err => console.error(err));
 }
-
+// disconnects, as a promise bc sometimes needs to do something after
 function closeServer() {
     return mongoose.disconnect().then(() => new Promise((resolve, reject) => {
         console.log('Closing server');
@@ -185,24 +185,20 @@ app.post('/users/login', function (req, res) {
 // creating a new Entry
 app.post('/entry/create', (req, res) => {
     let entryType = req.body.entryType;
-    let inputDate = req.body.inputDate;
-    let inputPlay = req.body.inputPlay;
+    let inputTitle = req.body.inputTitle;
     let inputAuthor = req.body.inputAuthor;
-    let inputRole = req.body.inputRole;
-    let inputCo = req.body.inputCo;
-    let inputLocation = req.body.inputLocation;
-    let inputNotes = req.body.inputNotes;
+    let inputContent = req.body.inputContent;
+    let inputDate = req.body.inputDate;
+
     let loggedInUserName = req.body.loggedInUserName;
 
     Entry.create({
         entryType,
         inputDate,
-        inputPlay,
+        inputTitle,
         inputAuthor,
-        inputRole,
-        inputCo,
-        inputLocation,
-        inputNotes,
+        inputContent,
+
         loggedInUserName
     }, (err, item) => {
         if (err) {

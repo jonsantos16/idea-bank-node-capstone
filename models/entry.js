@@ -8,35 +8,15 @@ const entrySchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    inputDate: {
+    inputTitle: {
         type: Date,
         required: false
     },
-    inputPlay: {
+    inputContent: {
         type: String,
         required: false
     },
     inputAuthor: {
-        type: String,
-        required: false
-    },
-    inputRole: {
-        type: String,
-        required: false
-    },
-    inputCo: {
-        type: String,
-        required: false
-    },
-    inputLocation: {
-        type: String,
-        required: false
-    },
-    inputNotes: {
-        type: String,
-        required: false
-    },
-    loggedInUserName: {
         type: String,
         required: false
     }

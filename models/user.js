@@ -26,6 +26,9 @@ const userSchema = new mongoose.Schema({
     }
 });
 
+
+
+
 userSchema.methods.validatePassword = function (password, callback) {
     bcrypt.compare(password, this.password, (err, isValid) => {
         if (err) {

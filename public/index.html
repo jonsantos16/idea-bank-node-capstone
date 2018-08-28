@@ -26,12 +26,19 @@
                         <li><a id="go-home" href="#"><i class="fas fa-home"></i></a></li>
                         <li><a id="go-new" href="#"><i class="fas fa-sticky-note"></i></a></li>
                         <li><a id="go-acct" href="#"><i class="fas fa-lightbulb"></i></a></li>
-                        <li><a class="go-login" href="#"><i class="fas fa-sign-out-alt"></i></a></li>
+                        <li><a class="go-logout" href="#"><i class="fas fa-sign-out-alt"></i></a></li>
                     </ul>
                 </div>  
         </div>    
     </nav>
     <main>
+            <div id="nav-list">
+                <input id="loggedInName" value="">
+                <!-- <span id="loggedInName"></span> -->
+                <input id="loggedInUserName" value="">
+                <p> | </p>
+                <span><button type="button" id="logout">Logout</button></span>
+            </div>
         
         <section id="signup-page">
             <div class="row">
@@ -57,8 +64,8 @@
                 <form class ="login">
                     <h2>Log In</h2>
                     <fieldset>
-                        <label><span>Username: </span><input name="username" type="text"></label>
-                        <label><span>Password:</span><input name="password" type="text"></label>
+                        <label><span>Username: </span><input name="username" id ="loginUsername" type="text"></label>
+                        <label><span>Password:</span><input name="password" id="loginPassword" type="text"></label>
                         <button type="submit" name="submit" >Submit</button>
                     </fieldset> 
                 </form>
@@ -129,9 +136,19 @@
                 <form class ="create-post">
                     <h3>Share Your Idea:</h3>
                     <fieldset>
-                        <label><span>Title: </span><input name="new-title" type="text"></label>
-                        <label><span>Image: </span><input name="new-image" type="file" accept="image/*" class="upload"></label>
-                        <label><span>Content: </span><textarea rows=5 cols="30" class="upload"></textarea></label>
+                        <label><span>Title: </span><input name="new-title" id="addInputTitle" type="text"></label>
+                        <label><span>Image: </span><input name="new-image" id="addInputImage" type="file" accept="image/*" class="upload"></label>
+                        <label><span>Content: </span><textarea rows=5 cols="30" id="addInputContent" class="upload"></textarea></label>
+                        <label>
+                            <span>Type: </span>
+                            <select class="addEntryType">
+                                <option value="recipe">Recipes</option>
+                                <option value="activities">Activities</option>
+                                <option value="outreach">Outreach</option>
+                                <option value="org/opt">Org and Optimization</option>
+                                <option value="decor">Decor</option>
+                            </select>
+                        </label>
                         <button type="submit" name="submit" >Submit</button>
                     </fieldset>
                 </form>
