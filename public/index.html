@@ -111,23 +111,8 @@
 
         <section class="my-account">
             <h2>Andres Fonseca</h2>
-            <div class="my-posts ">
-                <div class="row">
-                    <div class="my-result col-2">
-                        <h4><a href="#">Title</a></h4>
-                        <img src="images/img_lights.jpg" alt="image">
-                    </div>
-                    <div class="my-result col-2">
-                        <h4><a href="#">Title</a></h4>
-                        <img src="images/img_lights.jpg" alt="image">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="my-result col-2">
-                        <h4><a href="#">Title</a></h4>
-                        <img src="images/img_lights.jpg" alt="image">
-                    </div>
-                </div>
+            <div class="my-posts" id="user-list">
+                
             </div>
         </section>
         
@@ -136,9 +121,9 @@
                 <form class ="create-post">
                     <h3>Share Your Idea:</h3>
                     <fieldset>
-                        <label><span>Title: </span><input name="new-title" id="addInputTitle" type="text"></label>
-                        <label><span>Image: </span><input name="new-image" id="addInputImage" type="file" accept="image/*" class="upload"></label>
-                        <label><span>Content: </span><textarea rows=5 cols="30" id="addInputContent" class="upload"></textarea></label>
+                        <label><span>Title: </span><input name="new-title" id="addInputTitle" type="text" value=""></label>
+                        <!-- <label><span>Image: </span><input name="new-image" id="addInputImage" type="file" accept="image/*" class="upload"></label> -->
+                        <label><span>Content: </span><textarea rows=5 cols="30" id="addInputContent" class="upload" value=""></textarea></label>
                         <label>
                             <span>Type: </span>
                             <select class="addEntryType">

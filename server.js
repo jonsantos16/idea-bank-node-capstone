@@ -186,22 +186,19 @@ app.post('/users/login', function (req, res) {
 app.post('/entry/create', (req, res) => {
     let entryType = req.body.entryType;
     let inputTitle = req.body.inputTitle;
-    let inputAuthor = req.body.inputAuthor;
     let inputContent = req.body.inputContent;
-    let inputDate = req.body.inputDate;
-
-    let loggedInUserName = req.body.loggedInUserName;
+    let createdDate = req.body.createdDate;
+    let inputAuthor = req.body.inputAuthor;
 
     Entry.create({
         entryType,
-        inputDate,
         inputTitle,
         inputAuthor,
         inputContent,
-
-        loggedInUserName
+        createdDate,
     }, (err, item) => {
         if (err) {
+            console.log(err);
             return res.status(500).json({
                 message: 'Internal Server Error'
             });

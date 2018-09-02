@@ -1,90 +1,152 @@
-var MOCK_POSTS = {
-    'idea-posts': [
-        {
-            "id": "6YGN964",
-            "title": "Triangle meatballs",
-            "author": "Andres Fonseca",
-            "content": "Follow these steps...",
-            "created": ""
-        },
-        {
-            "id": "5XBH046",
-            "title": "Dongle organizer",
-            "author": "Julianna Anton",
-            "content": "Check it out...",
-            "created": ""
-        },
-        {
-            "id": "6YGN964",
-            "title": "Triangle meatballs",
-            "author": "Andres Fonseca",
-            "content": "Follow these steps...",
-            "created": ""
-        },
-        {
-            "id": "5XBH046",
-            "title": "Dongle organizer",
-            "author": "Julianna Anton",
-            "content": "Check it out...",
-            "created": ""
-        },
-        {
-            "id": "6YGN964",
-            "title": "Triangle meatballs",
-            "author": "Andres Fonseca",
-            "content": "Follow these steps...",
-            "created": ""
-        },
-        {
-            "id": "5XBH046",
-            "title": "Dongle organizer",
-            "author": "Julianna Anton",
-            "content": "Check it out...",
-            "created": ""
-        },
-        {
-            "id": "6YGN964",
-            "title": "Triangle meatballs",
-            "author": "Andres Fonseca",
-            "content": "Follow these steps...",
-            "created": ""
-        },
-        {
-            "id": "5XBH046",
-            "title": "Dongle organizer",
-            "author": "Julianna Anton",
-            "content": "Check it out...",
-            "created": ""
-        },
-        {
-            "id": "6YGN964",
-            "title": "Triangle meatballs",
-            "author": "Andres Fonseca",
-            "content": "Follow these steps...",
-            "created": ""
-        },
-        {
-            "id": "5XBH046",
-            "title": "Dongle organizer",
-            "author": "Julianna Anton",
-            "content": "Check it out...",
-            "created": ""
-        },
-        {
-            "id": "6YGN964",
-            "title": "Triangle meatballs",
-            "author": "Andres Fonseca",
-            "content": "Follow these steps...",
-            "created": ""
-        },
-        {
-            "id": "5XBH046",
-            "title": "Dongle organizer",
-            "author": "Julianna Anton",
-            "content": "Check it out...",
-            "created": ""
-        },
-    ]
+function addEntryRenderHTML(results) {
+    console.log(results);
+    let htmlString = ``;
+    // let displayDate = results.inputDate.substring(0, 10);
+    // let formattedDisplayDate = displayDate.split("-");
+    // let formattedDisplayDateOutput = formattedDisplayDate[1] + "/" + formattedDisplayDate[2] + "/" + formattedDisplayDate[0];
+
+    //loop throu all the results
+    //    $.each(resultsObject, function (key, results) {
+
+    htmlString += `<div class="entries-container" id="${results._id}">`;
+    //edit buttons start
+    htmlString += `<div class="entry-div ${results.entryType}">`;
+    htmlString += `<div class="edit-entry-buttons">`;
+    htmlString += `<span class="update-select">Edit</span>`;
+    htmlString += `<p>&nbsp|&nbsp</p>`;
+    htmlString += `<span class="delete-select">Delete</span>`;
+    htmlString += `</div>`;
+    //edit buttons finish
+
+    htmlString += `<span class="entry-info type info-label">${results.entryType}</span>`; //Value of Entry Type
+    htmlString += `<span class="entry-info date">`;
+    htmlString += `<p class="info-label">Date</p>`;
+    htmlString += `<p>${results.createdDate}</p>`;
+    htmlString += `</span>`;
+    // if (results.inputRole) {
+    //     htmlString += `<span class="entry-info role">`;
+    //     htmlString += `<p class="info-label">Role</p>`;
+    //     htmlString += `<p>${results.inputRole}</p>`;
+    //     htmlString += `</span>`;
+    // }
+    htmlString += `<span class="entry-info title">`;
+    // htmlString += `<p class="info-label">Title</p>`;
+    htmlString += `<p>${results.inputTitle}</p>`;
+    htmlString += `<span class="author"> by ${results.inputAuthor}</span>`;
+    htmlString += `</span>`;
+    // if (results.inputCo) {
+    //     htmlString += `<span class="entry-info theater-co">`;
+    //     htmlString += `<p class="info-label">Company</p>`;
+    //     htmlString += `<p>${results.inputCo}</p>`;
+    //     htmlString += `</span>`;
+    // }
+    // if (results.inputLocation) {
+    //     htmlString += `<span class="entry-info location">`;
+    //     htmlString += `<p class="info-label">Location</p>`;
+    //     htmlString += `<p>${results.inputLocation}</p>`;
+    //     htmlString += `</span>`;
+    // }
+    htmlString += `<span class="entry-info content">`
+    // htmlString += `<p class="info-label"></p>`
+    htmlString += `<p>${results.inputContent}</p>`;
+    htmlString += `</span>`;
+    htmlString += `</div>`;
+
+
+    //Edit Entry  Entry form start
+    htmlString += `<div class="js-edit-entry" style="display: none;">`;
+    htmlString += `<form action="" class="edit-entry-form">`;
+    htmlString += `<fieldset>`;
+    htmlString += `<label><span>Title: </span><input name="new-title" id="addInputTitle" type="text" value="${results.inputTitle}"></label>`;
+    htmlString += `<label><span>Content: </span><textarea rows=5 cols="30" id="addInputContent" class="upload" value="${results.inputContent}"></textarea></label>`;
+
+    htmlString += `<label>`;
+    htmlString += `<span>Type: </span>`;
+
+    //dynamically preselect the options based on the previous values
+    htmlString += `<select class="addEntryType">`;
+    if (results.entryType == "recipe") {
+        htmlString += `<option value="recipe" selected>Recipes</option>`;
+        htmlString += `<option value="activities">Activities</option>`;
+        htmlString += `<option value="outreach">Outreach</option>`;
+        htmlString += `<option value="org/opt">Org and Optimization</option>`
+        htmlString += `<option value="decor">Decor</option>`
+    } else if (results.entryType == "activities") {
+        htmlString += `<option value="recipe" >Recipes</option>`;
+        htmlString += `<option value="activities" selected>Activities</option>`;
+        htmlString += `<option value="outreach">Outreach</option>`;
+        htmlString += `<option value="org/opt">Org and Optimization</option>`
+        htmlString += `<option value="decor">Decor</option>`
+    } else if (results.entryType == "outreach") {
+        htmlString += `<option value="recipe" >Recipes</option>`;
+        htmlString += `<option value="activities">Activities</option>`;
+        htmlString += `<option value="outreach" selected>Outreach</option>`;
+        htmlString += `<option value="org/opt">Org and Optimization</option>`
+        htmlString += `<option value="decor">Decor</option>`
+    } else if (results.entryType == "org/opt") {
+        htmlString += `<option value="recipe" >Recipes</option>`;
+        htmlString += `<option value="activities">Activities</option>`;
+        htmlString += `<option value="outreach">Outreach</option>`;
+        htmlString += `<option value="org/opt" selected>Org and Optimization</option>`
+        htmlString += `<option value="decor">Decor</option>`
+    } else if (results.entryType == "decor") {
+        htmlString += `<option value="recipe" >Recipes</option>`;
+        htmlString += `<option value="activities">Activities</option>`;
+        htmlString += `<option value="outreach">Outreach</option>`;
+        htmlString += `<option value="org/opt">Org and Optimization</option>`
+        htmlString += `<option value="decor" selected>Decor</option>`
+    }
+    htmlString += `</select>`;
+    htmlString += `</label>`;
+    htmlString += `<button type="submit" name="submit" >Submit</button>`;
+    htmlString += `</fieldset>`
+    htmlString += `</form>`
+    htmlString += `</div>`
+
+    // htmlString += `<br>`;
+    // htmlString += `<label for="inputDate">Date</label>`;
+    // htmlString += `<input type="date" class="inputDate" value="${displayDate}">`;
+    // //    htmlString += `<button type="button" class="date-text">Need Date Range?</button>`;
+    // htmlString += `<div class="play-info">`;
+    // htmlString += `<label for="inputPlay">Play</label>`;
+    // htmlString += `<input type="text" class="inputPlay" placeholder="Play" value="${results.inputPlay}">`;
+    // htmlString += `<input type="hidden" class="inputEntryID"  value="${results._id}">`;
+    // htmlString += `<label for="inputAuthor">Author</label>`;
+    // htmlString += `<input type="text" class="inputAuthor" placeholder="Author" value="${results.inputAuthor}">`;
+    // htmlString += `<label for="inputRole">Role</label>`;
+    // htmlString += `<input type="text" class="inputRole" placeholder="Role" value="${results.inputRole}">`;
+    // htmlString += `</div>`;
+    // htmlString += `<div class="place-info">`;
+    // htmlString += `<label for="inputCo">Company</label>`;
+    // htmlString += `<input type="text" class="inputCo" placeholder="Company" value="${results.inputCo}">`;
+    // htmlString += `<label for="inputLocation">Location</label>`;
+    // htmlString += `<input type="text" class="inputLocation" placeholder="Location" value="${results.inputLocation}">`;
+    // htmlString += `</div>`;
+    // htmlString += `<br>`;
+    // htmlString += `<label for="inputNotes">Notes</label>`;
+    // htmlString += `<textarea name="Text1" class="inputNotes" cols="40" rows="5">${results.inputNotes}</textarea>`;
+    // htmlString += `</fieldset>`;
+    // htmlString += `<button type="submit" class="submit-button">Update Entry</button>`;
+    // htmlString += `<span class="cancel-button">Cancel</span>`;
+    // htmlString += `</form>`;
+    // htmlString += `</div>`;
+    //Edit Entry  Entry form finish
+
+    //delete entry form start
+    htmlString += `<div class="js-delete-entry" style="display: none;">`;
+    htmlString += `<form class="delete-entry-form">`;
+    htmlString += `<input type="hidden" class="inputEntryID"  value="${results._id}">`;
+    htmlString += `<h4>Are you sure you want to delete this entry?</h4>`;
+    htmlString += `<button type="submit" class="delete-button">Delete</button>`;
+    htmlString += `<span class="cancel-button">Cancel</span>`;
+    htmlString += `</form>`;
+    htmlString += `</div>`;
+    //delete entry form finish
+
+
+    htmlString += `</div>`;
+    //    });
+    return htmlString;
 }
 
 // Shows one section only
@@ -305,10 +367,17 @@ $('.create-post').find('button').on('click', function() {
     
         //take the input from the user
         const entryType = $(".addEntryType").val();
-        const inputTitle = $(".addInputTitle").val();
-        const inputContent = $(".addInputContent").val();
+        const inputTitle = $("#addInputTitle").val();
+        const inputContent = $("#addInputContent").val();
         const loggedInName = $("#loggedInName").val();
-    
+        var createdDate = new Date();
+
+        console.log(createdDate);
+        // console.log(entryType);
+        // console.log(inputTitle);
+        // console.log(inputContent);
+        // console.log(loggedInName);
+
         //validate the input
         if (entryType == "") {
             alert('Please input entry type');
@@ -326,6 +395,7 @@ $('.create-post').find('button').on('click', function() {
                 inputTitle: inputTitle,
                 inputContent: inputContent,
                 inputAuthor: loggedInName,
+                createdDate: createdDate,
             };
             console.log(entryObject);
     
@@ -347,8 +417,9 @@ $('.create-post').find('button').on('click', function() {
                     // $('#loggedInUserName').val(result.username);
                     // $('#add-entry-container').hide();
                     //                noEntries();
-                    
+
                     //Add Entry to page
+                    showAccount();
                     $('#user-list').prepend(addEntryRenderHTML(result));
                     $('html, body').animate({
                         scrollTop: $(`#${result._id}`).offset().top

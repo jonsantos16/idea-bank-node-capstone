@@ -9,7 +9,7 @@ const entrySchema = new mongoose.Schema({
         required: false
     },
     inputTitle: {
-        type: Date,
+        type: String,
         required: false
     },
     inputContent: {
@@ -17,6 +17,10 @@ const entrySchema = new mongoose.Schema({
         required: false
     },
     inputAuthor: {
+        type: String,
+        required: false
+    },
+    createdDate: {
         type: String,
         required: false
     }

@@ -216,3 +216,35 @@ section img {
 .create-post label, .create-post button {
     margin-top: 20px;
 }
+
+/* Edit/Delete */
+.entries-container {
+    text-align: left;
+    background: rgba(245, 245, 245, .9);
+    color: black;
+    border-radius: 5px;
+    padding: 7px;
+    margin: 0 auto 1.5%;
+    font-size: 1.2rem;
+}
+
+.js-delete-entry {
+    text-align: center;
+}
+
+.delete-button {
+    background-color: red;
+    padding: 8px 18px;
+    border-radius: 8px;
+    color: whitesmoke;
+}
+
+.delete-button:hover {
+    background-color: slategrey;
+    color: red;
+}
+
+.cancel-button:hover {
+    cursor: pointer;
+    color: darkgrey;
+}
