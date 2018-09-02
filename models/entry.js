@@ -20,6 +20,10 @@ const entrySchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    loggedInUserName: {
+        type: String,
+        required: false
+    },
     createdDate: {
         type: String,
         required: false

@@ -146,6 +146,7 @@ function addEntryRenderHTML(results) {
 
     htmlString += `</div>`;
     //    });
+    // console.log(htmlString);
     return htmlString;
 }
 
@@ -361,6 +362,49 @@ $('.go-logout').on('click', function() {
     location.reload();
 })
 
+$('#go-acct').on('click', function() {
+    event.preventDefault();
+
+    let username = $('#loggedInUserName').val();
+    // let fullName = $('#loggedinName').val();
+    console.log(`going to ${username}'s account`);
+
+    const UserObject = {
+        user: username
+    };
+
+    $.ajax({
+        type: 'GET',
+        url: `/entry/${username}`,
+        dataType: 'json',
+        data: JSON.stringify(UserObject),
+        contentType: 'application/json'
+    })
+        .done(function(result) {
+            console.log(result);
+            if (result.entriesOutput.length === 0) {
+                $('#no-entry').show();
+            } else {
+                $('#no-entry').hide();
+            }
+
+            $('#user-list').html("");
+            htmlUserDashboard(result);
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        })
+})
+
+function htmlUserDashboard(resultsObject) {
+    console.log(resultsObject.entriesOutput);
+    $.each(resultsObject.entriesOutput, function (key, value) {
+        $('#user-list').append(addEntryRenderHTML(value));
+    });
+}
+
 $('.create-post').find('button').on('click', function() {
     event.preventDefault();
     console.log('creating new post');
@@ -370,6 +414,7 @@ $('.create-post').find('button').on('click', function() {
         const inputTitle = $("#addInputTitle").val();
         const inputContent = $("#addInputContent").val();
         const loggedInName = $("#loggedInName").val();
+        const loggedInUserName = $('#loggedInUserName').val();
         var createdDate = new Date();
 
         console.log(createdDate);
@@ -396,6 +441,7 @@ $('.create-post').find('button').on('click', function() {
                 inputContent: inputContent,
                 inputAuthor: loggedInName,
                 createdDate: createdDate,
+                loggedInUserName: loggedInUserName
             };
             console.log(entryObject);
     

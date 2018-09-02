@@ -189,6 +189,7 @@ app.post('/entry/create', (req, res) => {
     let inputContent = req.body.inputContent;
     let createdDate = req.body.createdDate;
     let inputAuthor = req.body.inputAuthor;
+    let loggedInUserName = req.body.loggedInUserName;
 
     Entry.create({
         entryType,
@@ -196,9 +197,10 @@ app.post('/entry/create', (req, res) => {
         inputAuthor,
         inputContent,
         createdDate,
+        loggedInUserName,
     }, (err, item) => {
         if (err) {
-            console.log(err);
+            // console.log(err);
             return res.status(500).json({
                 message: 'Internal Server Error'
             });
@@ -234,14 +236,17 @@ app.put('/entry/:id', function (req, res) {
 
 // GET ------------------------------------
 // accessing all of a user's entries
-app.get('/entry-date/:user', function (req, res) {
+app.get('/entry/:user', function (req, res) {
 
     Entry
         .find()
-        .sort('inputDate')
+        .sort('createdDate')
         .then(function (entries) {
+            // console.log(entries);
             let entriesOutput = [];
             entries.map(function (entry) {
+                console.log(entry);
+                // console.log(req.params.user);
                 if (entry.loggedInUserName == req.params.user) {
                     entriesOutput.push(entry);
                 }
