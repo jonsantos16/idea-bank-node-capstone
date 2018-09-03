@@ -224,27 +224,53 @@ section img {
     color: black;
     border-radius: 5px;
     padding: 7px;
-    margin: 0 auto 1.5%;
+    /* margin: 0 auto 1.5%; */
     font-size: 1.2rem;
+    margin: 20px;
 }
 
-.js-delete-entry {
-    text-align: center;
+.edit-entry-buttons {
+    float: right;
 }
 
-.delete-button {
-    background-color: red;
-    padding: 8px 18px;
-    border-radius: 8px;
-    color: whitesmoke;
+.edit-entry-buttons li {
+    display: inline-block;
 }
 
-.delete-button:hover {
-    background-color: slategrey;
-    color: red;
+.edit-entry-buttons i {
+    font-size: 100%;
 }
 
-.cancel-button:hover {
-    cursor: pointer;
-    color: darkgrey;
+.edit-entry-buttons p {
+    display: inline-block;
 }
+
+.my-account span {
+    width: auto;
+}
+
+.title p {
+    font-size: 30px;
+}
+
+.info-label {
+    display: block;
+    font-size: 14px;
+}
+
+.date {
+    font-size: 14px;
+}
+
+.content, .title {
+    display: block;
+}
+
+.entry-info {
+    margin-top: 12px;
+}
+
+
+
+
+

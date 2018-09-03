@@ -1,6 +1,7 @@
 function addEntryRenderHTML(results) {
     console.log(results);
     let htmlString = ``;
+    
     // let displayDate = results.inputDate.substring(0, 10);
     // let formattedDisplayDate = displayDate.split("-");
     // let formattedDisplayDateOutput = formattedDisplayDate[1] + "/" + formattedDisplayDate[2] + "/" + formattedDisplayDate[0];
@@ -12,46 +13,32 @@ function addEntryRenderHTML(results) {
     //edit buttons start
     htmlString += `<div class="entry-div ${results.entryType}">`;
     htmlString += `<div class="edit-entry-buttons">`;
-    htmlString += `<span class="update-select">Edit</span>`;
-    htmlString += `<p>&nbsp|&nbsp</p>`;
-    htmlString += `<span class="delete-select">Delete</span>`;
+    htmlString += `<ul>`;
+    htmlString += `<li><span class="update-select"><i class="fas fa-pencil-alt"></i></span></li>`;
+    htmlString += `<li><span class="delete-select"><i class="fas fa-trash-alt"></i></span></li>`;
+    htmlString += `</ul>`;
     htmlString += `</div>`;
     //edit buttons finish
 
-    htmlString += `<span class="entry-info type info-label">${results.entryType}</span>`; //Value of Entry Type
-    htmlString += `<span class="entry-info date">`;
-    htmlString += `<p class="info-label">Date</p>`;
-    htmlString += `<p>${results.createdDate}</p>`;
-    htmlString += `</span>`;
-    // if (results.inputRole) {
-    //     htmlString += `<span class="entry-info role">`;
-    //     htmlString += `<p class="info-label">Role</p>`;
-    //     htmlString += `<p>${results.inputRole}</p>`;
-    //     htmlString += `</span>`;
-    // }
+    // Title & Author
     htmlString += `<span class="entry-info title">`;
-    // htmlString += `<p class="info-label">Title</p>`;
     htmlString += `<p>${results.inputTitle}</p>`;
     htmlString += `<span class="author"> by ${results.inputAuthor}</span>`;
     htmlString += `</span>`;
-    // if (results.inputCo) {
-    //     htmlString += `<span class="entry-info theater-co">`;
-    //     htmlString += `<p class="info-label">Company</p>`;
-    //     htmlString += `<p>${results.inputCo}</p>`;
-    //     htmlString += `</span>`;
-    // }
-    // if (results.inputLocation) {
-    //     htmlString += `<span class="entry-info location">`;
-    //     htmlString += `<p class="info-label">Location</p>`;
-    //     htmlString += `<p>${results.inputLocation}</p>`;
-    //     htmlString += `</span>`;
-    // }
+    
+    // Created Date
+    htmlString += `<span class="entry-info date">`;
+    htmlString += `<p class="info-label">Posted on ${results.createdDate}</p>`;
+    htmlString += `</span>`;
+
+    // Content
     htmlString += `<span class="entry-info content">`
-    // htmlString += `<p class="info-label"></p>`
     htmlString += `<p>${results.inputContent}</p>`;
     htmlString += `</span>`;
     htmlString += `</div>`;
 
+    // Entry Type
+    htmlString += `<span class="entry-info type info-label">Category: ${results.entryType}</span>`; 
 
     //Edit Entry  Entry form start
     htmlString += `<div class="js-edit-entry" style="display: none;">`;
@@ -235,7 +222,7 @@ function handleClicks() {
     });
 }
 
-showSignUp();
+showLogin();
 $(handleClicks());
 
 
@@ -417,7 +404,12 @@ $('.create-post').find('button').on('click', function() {
         const loggedInUserName = $('#loggedInUserName').val();
         var createdDate = new Date();
 
-        console.log(createdDate);
+        let month = createdDate.getMonth() + 1;
+        let date = createdDate.getDate();
+        let year = createdDate.getFullYear();
+        let abbrDate = `${month}/${date}/${year}`
+        console.log(abbrDate)
+
         // console.log(entryType);
         // console.log(inputTitle);
         // console.log(inputContent);
@@ -427,9 +419,9 @@ $('.create-post').find('button').on('click', function() {
         if (entryType == "") {
             alert('Please input entry type');
         } else if (inputTitle == "") {
-            alert('Please input addInputDate');
+            alert('Please input title');
         } else if (inputContent == "") {
-            alert('Please input addInputPlay');
+            alert('Please input content');
         } 
         //if the input is valid
         else {
@@ -440,7 +432,7 @@ $('.create-post').find('button').on('click', function() {
                 inputTitle: inputTitle,
                 inputContent: inputContent,
                 inputAuthor: loggedInName,
-                createdDate: createdDate,
+                createdDate: `${abbrDate}`,
                 loggedInUserName: loggedInUserName
             };
             console.log(entryObject);
@@ -483,3 +475,22 @@ $('.create-post').find('button').on('click', function() {
                 });
         };
     });
+
+    $('.search-bar').find('button').on('click', function() {
+        event.preventDefault();
+        let value = $('.js-query').val();
+        let searchTerms = value.split(" ")
+        console.log(searchTerms);
+        
+        const query = {
+            q: `${searchTerms}`
+        }
+
+        $.ajax({
+            type: 'GET',
+            url: `/entry/${searchTerms}`,
+            dataType: 'json',
+            data: JSON.stringify(query),
+            contentType: 'application/json'
+        })
+    })

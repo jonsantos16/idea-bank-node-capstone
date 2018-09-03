@@ -191,6 +191,8 @@ app.post('/entry/create', (req, res) => {
     let inputAuthor = req.body.inputAuthor;
     let loggedInUserName = req.body.loggedInUserName;
 
+    console.log(createdDate);
+    
     Entry.create({
         entryType,
         inputTitle,
@@ -262,13 +264,13 @@ app.get('/entry/:user', function (req, res) {
             });
         });
 });
-app.get('/entry-read/:user', function (req, res) {
-
+app.get('/entry/:query', function (req, res) {
+    console.log(req.params);
     Entry
         .find({
-            "entryType": "read"
+            title: {$in: req.body}
         })
-        .sort('inputDate')
+        .sort('createdDate')
         .then(function (entries) {
             let entriesOutput = [];
             entries.map(function (entry) {
