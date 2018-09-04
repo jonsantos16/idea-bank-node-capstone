@@ -14,8 +14,8 @@ function addEntryRenderHTML(results) {
     htmlString += `<div class="entry-div ${results.entryType}">`;
     htmlString += `<div class="edit-entry-buttons">`;
     htmlString += `<ul>`;
-    htmlString += `<li><span class="update-select"><i class="fas fa-pencil-alt"></i></span></li>`;
-    htmlString += `<li><span class="delete-select"><i class="fas fa-trash-alt"></i></span></li>`;
+    htmlString += `<li><span class="update-select"><a id="edit-this" href="#"><i class="fas fa-pencil-alt"></i></a></span></li>`;
+    htmlString += `<li><span class="delete-select"><a id="delete-this" href="#"><i class="fas fa-trash-alt"></i></a></span></li>`;
     htmlString += `</ul>`;
     htmlString += `</div>`;
     //edit buttons finish
@@ -45,7 +45,7 @@ function addEntryRenderHTML(results) {
     htmlString += `<form action="" class="edit-entry-form">`;
     htmlString += `<fieldset>`;
     htmlString += `<label><span>Title: </span><input name="new-title" id="addInputTitle" type="text" value="${results.inputTitle}"></label>`;
-    htmlString += `<label><span>Content: </span><textarea rows=5 cols="30" id="addInputContent" class="upload" value="${results.inputContent}"></textarea></label>`;
+    htmlString += `<label><span>Content: </span><textarea rows=5 cols="30" id="addInputContent" class="upload" value="">${results.inputContent}</textarea></label>`;
 
     htmlString += `<label>`;
     htmlString += `<span>Type: </span>`;
@@ -125,7 +125,7 @@ function addEntryRenderHTML(results) {
     htmlString += `<input type="hidden" class="inputEntryID"  value="${results._id}">`;
     htmlString += `<h4>Are you sure you want to delete this entry?</h4>`;
     htmlString += `<button type="submit" class="delete-button">Delete</button>`;
-    htmlString += `<span class="cancel-button">Cancel</span>`;
+    htmlString += `<span class="cancel-button"><a href="#">Cancel</a></span>`;
     htmlString += `</form>`;
     htmlString += `</div>`;
     //delete entry form finish
@@ -476,21 +476,42 @@ $('.create-post').find('button').on('click', function() {
         };
     });
 
-    $('.search-bar').find('button').on('click', function() {
-        event.preventDefault();
-        let value = $('.js-query').val();
-        let searchTerms = value.split(" ")
-        console.log(searchTerms);
-        
-        const query = {
-            q: `${searchTerms}`
-        }
+// Edit my posts    
+$('#user-list').on('click', '#edit-this', function() {
+    // event.preventDefault();
+    console.log('updating');
+    // console.log(this);
+    $(this).parents('.entry-div').siblings('.js-edit-entry').show();
+})
 
-        $.ajax({
-            type: 'GET',
-            url: `/entry/${searchTerms}`,
-            dataType: 'json',
-            data: JSON.stringify(query),
-            contentType: 'application/json'
-        })
+// Delete my posts
+$('#user-list').on('click', '#delete-this', function() {
+    // event.preventDefault();
+    console.log('deleting');
+    $(this).parents('.entry-div').siblings('.js-delete-entry').show();
+})
+
+$('#user-list').on('click', '.delete-button', function() {
+    event.preventDefault();
+    
+})
+
+// Query search
+$('.search-bar').find('button').on('click', function() {
+    event.preventDefault();
+    let value = $('.js-query').val();
+    let searchTerms = value.split(" ")
+    console.log(searchTerms);
+    
+    const query = {
+        q: `${searchTerms}`
+    }
+
+    $.ajax({
+        type: 'GET',
+        url: `/entry/${searchTerms}`,
+        dataType: 'json',
+        data: JSON.stringify(query),
+        contentType: 'application/json'
     })
+})
