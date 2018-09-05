@@ -214,16 +214,16 @@ app.post('/entry/create', (req, res) => {
 });
 
 // PUT --------------------------------------
-app.put('/entry/:id', function (req, res) {
+app.put('/update-entry/:id', function (req, res) {
+    console.log(req.body);
     let toUpdate = {};
-    //    let updateableFields = ['achieveWhat', 'achieveHow', 'achieveWhen', 'achieveWhy']; //<--Marius? 'entryType
-    let updateableFields = ['entryType', 'inputDate', 'inputPlay', 'inputAuthor', 'inputRole', 'inputCo', 'inputLocation', 'inputNotes', 'loggedInUserName'];
-    updateableFields.forEach(function (field) {
+    let updateableFields = ['entryType', 'inputTitle','inputContent'];
+    updateableFields.forEach(function(field) {
         if (field in req.body) {
             toUpdate[field] = req.body[field];
         }
     });
-//    console.log(toUpdate);
+    console.log(toUpdate);
     Entry
         .findByIdAndUpdate(req.params.id, {
             $set: toUpdate
@@ -238,7 +238,7 @@ app.put('/entry/:id', function (req, res) {
 
 // GET ------------------------------------
 // accessing all of a user's entries
-app.get('/entry/:user', function (req, res) {
+app.get('/get-entry-by-user/:user', function (req, res) {
 
     Entry
         .find()
@@ -247,7 +247,7 @@ app.get('/entry/:user', function (req, res) {
             // console.log(entries);
             let entriesOutput = [];
             entries.map(function (entry) {
-                console.log(entry);
+                // console.log(entry);
                 // console.log(req.params.user);
                 if (entry.loggedInUserName == req.params.user) {
                     entriesOutput.push(entry);
@@ -264,22 +264,29 @@ app.get('/entry/:user', function (req, res) {
             });
         });
 });
-app.get('/entry/:query', function (req, res) {
-    console.log(req.params);
+app.get('/search-entry/:query', function (req, res) {
+    console.log(req.params.query);
+    db.entries.createIndex({
+        "$**": "text"
+    })
+    
     Entry
         .find({
-            title: {$in: req.body}
+            $text: { $search: req.params.query }
+            // inputTitle:  req.param.query,
+            // inputContent: req.params.query
         })
         .sort('createdDate')
         .then(function (entries) {
-            let entriesOutput = [];
-            entries.map(function (entry) {
-                if (entry.loggedInUserName == req.params.user) {
-                    entriesOutput.push(entry);
-                }
-            });
+            console.log(entries);
+            // let entriesOutput = [];
+            // entries.map(function (entry) {
+            //     if (entry.loggedInUserName == req.params.user) {
+            //         entriesOutput.push(entry);
+            //     }
+            // });
             res.json({
-                entriesOutput
+                entries
             });
         })
         .catch(function (err) {

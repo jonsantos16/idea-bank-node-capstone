@@ -24,6 +24,7 @@ function addEntryRenderHTML(results) {
     htmlString += `<span class="entry-info title">`;
     htmlString += `<p>${results.inputTitle}</p>`;
     htmlString += `<span class="author"> by ${results.inputAuthor}</span>`;
+    htmlString += `<input type="hidden" class="inputEntryID"  value="${results._id}">`;
     htmlString += `</span>`;
     
     // Created Date
@@ -45,6 +46,7 @@ function addEntryRenderHTML(results) {
     htmlString += `<form action="" class="edit-entry-form">`;
     htmlString += `<fieldset>`;
     htmlString += `<label><span>Title: </span><input name="new-title" id="addInputTitle" type="text" value="${results.inputTitle}"></label>`;
+    htmlString += `<label><input type="hidden" class="inputEntryID" value="${results._id}"></label>`;
     htmlString += `<label><span>Content: </span><textarea rows=5 cols="30" id="addInputContent" class="upload" value="">${results.inputContent}</textarea></label>`;
 
     htmlString += `<label>`;
@@ -85,7 +87,8 @@ function addEntryRenderHTML(results) {
     }
     htmlString += `</select>`;
     htmlString += `</label>`;
-    htmlString += `<button type="submit" name="submit" >Submit</button>`;
+    htmlString += `<button type="submit" name="submit" class="edit-button">Submit</button>`;
+    htmlString += `<span class="cancel-button"><a href="#">Cancel</a></span>`;
     htmlString += `</fieldset>`
     htmlString += `</form>`
     htmlString += `</div>`
@@ -362,7 +365,7 @@ $('#go-acct').on('click', function() {
 
     $.ajax({
         type: 'GET',
-        url: `/entry/${username}`,
+        url: `/get-entry-by-user/${username}`,
         dataType: 'json',
         data: JSON.stringify(UserObject),
         contentType: 'application/json'
@@ -482,36 +485,145 @@ $('#user-list').on('click', '#edit-this', function() {
     console.log('updating');
     // console.log(this);
     $(this).parents('.entry-div').siblings('.js-edit-entry').show();
+});
+
+$('#user-list').on('click', '.edit-button', function() {
+    event.preventDefault();
+
+    const parentDiv = $(this).closest('.entries-container');
+    const entryType = $(this).siblings().find(".addEntryType").val();
+    const inputTitle = $(this).siblings().find("#addInputTitle").val();
+    const inputContent = $(this).siblings().find("#addInputContent").val();
+    const loggedInUserName = $("#loggedInUserName").val();
+    const entryId = $(this).siblings().find('.inputEntryID').val();
+
+    //validate the input
+    if (entryType == "") {
+        alert('Please input entry type');
+    } else if (inputTitle == "") {
+        alert('Please input Title');
+    } else if (inputContent == "") {
+        alert('Please input Content');
+    }
+
+    //if the input is valid
+    else {
+        //create the payload object (what data we send to the api call)
+        const entryObject = {
+            entryType: entryType,
+            inputTitle: inputTitle,
+            inputContent: inputContent,
+            // loggedInUserName: loggedInUserName,
+            entryId: entryId
+        };
+        console.log(entryObject);
+
+        $.ajax({
+            type: 'PUT',
+            url: `/update-entry/${entryId}`,
+            dataType: 'json',
+            data: JSON.stringify(entryObject),
+            contentType: 'application/json'
+        })
+        //if call is successful
+        .done(function (result) {
+            // populateUserDashboardDate(loggedInUserName);
+            $('.js-edit-entry').hide();
+            alert('Done!')
+            console.log(parentDiv);
+            $('html, body').animate({
+                scrollTop: parentDiv.offset().top
+            }, 1000);
+
+        })
+        //if the call is failing
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        });
+    };
+
 })
+
 
 // Delete my posts
 $('#user-list').on('click', '#delete-this', function() {
     // event.preventDefault();
     console.log('deleting');
     $(this).parents('.entry-div').siblings('.js-delete-entry').show();
-})
+});
 
 $('#user-list').on('click', '.delete-button', function() {
     event.preventDefault();
     
+    const entryId = $(this).parent().find('.inputEntryID').val();
+    const parentDiv = $(this).closest('.entries-container');
+
+    $.ajax({
+        type: 'DELETE',
+        url: `/entry/${entryId}`,
+        dataType: 'json',
+        contentType: 'application/json'
+    })
+        //if call is successful
+        .done(function (result) {
+            console.log(result);
+            // populateUserDashboardDate(loggedInUserName);
+            alert("Entry deleted");
+            $('.js-delete-entry').hide();
+            $(parentDiv).remove();
+
+            $('html, body').animate({
+                scrollTop: $('.navbar').offset().top
+            }, 1000);
+
+    })
+        //if the call is failing
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        });
+})
+
+$('#user-list').on('click', '.cancel-button', function() {
+    event.preventDefault();
+    
+    $('.js-delete-entry').hide();
+    $('.js-edit-entry').hide();
+    $('html, body').animate({
+        scrollTop: $(this).closest('.entries-container').offset().top
+    }, 1000);
 })
 
 // Query search
 $('.search-bar').find('button').on('click', function() {
     event.preventDefault();
     let value = $('.js-query').val();
-    let searchTerms = value.split(" ")
-    console.log(searchTerms);
+    // let searchTerms = value.split(" ");
+    // console.log(searchTerms);
     
-    const query = {
-        q: `${searchTerms}`
-    }
+    // const query = {
+    //     q: `${searchTerms}`
+    // }
 
     $.ajax({
         type: 'GET',
-        url: `/entry/${searchTerms}`,
+        url: `/search-entry/${value}`,
         dataType: 'json',
-        data: JSON.stringify(query),
+        // data: JSON.stringify(query),
         contentType: 'application/json'
     })
+        .done(function(result) {
+            console.log(result);
+            value = undefined; 
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        });
 })
+
+
