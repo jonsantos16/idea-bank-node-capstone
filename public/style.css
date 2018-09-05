@@ -227,6 +227,7 @@ section img {
     /* margin: 0 auto 1.5%; */
     font-size: 1.2rem;
     margin: 20px;
+    width: 90%;
 }
 
 .edit-entry-buttons {

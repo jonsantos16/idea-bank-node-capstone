@@ -1,15 +1,8 @@
 function addEntryRenderHTML(results) {
     console.log(results);
     let htmlString = ``;
-    
-    // let displayDate = results.inputDate.substring(0, 10);
-    // let formattedDisplayDate = displayDate.split("-");
-    // let formattedDisplayDateOutput = formattedDisplayDate[1] + "/" + formattedDisplayDate[2] + "/" + formattedDisplayDate[0];
 
-    //loop throu all the results
-    //    $.each(resultsObject, function (key, results) {
-
-    htmlString += `<div class="entries-container" id="${results._id}">`;
+    htmlString += `<div class="entries-container row" id="${results._id}">`;
     //edit buttons start
     htmlString += `<div class="entry-div ${results.entryType}">`;
     htmlString += `<div class="edit-entry-buttons">`;
@@ -45,15 +38,15 @@ function addEntryRenderHTML(results) {
     htmlString += `<div class="js-edit-entry" style="display: none;">`;
     htmlString += `<form action="" class="edit-entry-form">`;
     htmlString += `<fieldset>`;
-    htmlString += `<label><span>Title: </span><input name="new-title" id="addInputTitle" type="text" value="${results.inputTitle}"></label>`;
+    htmlString += `<label><span>Title: </span><input name="new-title" id="updateInputTitle" type="text" value="${results.inputTitle}"></label>`;
     htmlString += `<label><input type="hidden" class="inputEntryID" value="${results._id}"></label>`;
-    htmlString += `<label><span>Content: </span><textarea rows=5 cols="30" id="addInputContent" class="upload" value="">${results.inputContent}</textarea></label>`;
+    htmlString += `<label><span>Content: </span><textarea rows=5 cols="30" id="updateInputContent" class="upload" value="">${results.inputContent}</textarea></label>`;
 
     htmlString += `<label>`;
     htmlString += `<span>Type: </span>`;
 
     //dynamically preselect the options based on the previous values
-    htmlString += `<select class="addEntryType">`;
+    htmlString += `<select class="updateEntryType">`;
     if (results.entryType == "recipe") {
         htmlString += `<option value="recipe" selected>Recipes</option>`;
         htmlString += `<option value="activities">Activities</option>`;
@@ -92,34 +85,6 @@ function addEntryRenderHTML(results) {
     htmlString += `</fieldset>`
     htmlString += `</form>`
     htmlString += `</div>`
-
-    // htmlString += `<br>`;
-    // htmlString += `<label for="inputDate">Date</label>`;
-    // htmlString += `<input type="date" class="inputDate" value="${displayDate}">`;
-    // //    htmlString += `<button type="button" class="date-text">Need Date Range?</button>`;
-    // htmlString += `<div class="play-info">`;
-    // htmlString += `<label for="inputPlay">Play</label>`;
-    // htmlString += `<input type="text" class="inputPlay" placeholder="Play" value="${results.inputPlay}">`;
-    // htmlString += `<input type="hidden" class="inputEntryID"  value="${results._id}">`;
-    // htmlString += `<label for="inputAuthor">Author</label>`;
-    // htmlString += `<input type="text" class="inputAuthor" placeholder="Author" value="${results.inputAuthor}">`;
-    // htmlString += `<label for="inputRole">Role</label>`;
-    // htmlString += `<input type="text" class="inputRole" placeholder="Role" value="${results.inputRole}">`;
-    // htmlString += `</div>`;
-    // htmlString += `<div class="place-info">`;
-    // htmlString += `<label for="inputCo">Company</label>`;
-    // htmlString += `<input type="text" class="inputCo" placeholder="Company" value="${results.inputCo}">`;
-    // htmlString += `<label for="inputLocation">Location</label>`;
-    // htmlString += `<input type="text" class="inputLocation" placeholder="Location" value="${results.inputLocation}">`;
-    // htmlString += `</div>`;
-    // htmlString += `<br>`;
-    // htmlString += `<label for="inputNotes">Notes</label>`;
-    // htmlString += `<textarea name="Text1" class="inputNotes" cols="40" rows="5">${results.inputNotes}</textarea>`;
-    // htmlString += `</fieldset>`;
-    // htmlString += `<button type="submit" class="submit-button">Update Entry</button>`;
-    // htmlString += `<span class="cancel-button">Cancel</span>`;
-    // htmlString += `</form>`;
-    // htmlString += `</div>`;
     //Edit Entry  Entry form finish
 
     //delete entry form start
@@ -259,13 +224,9 @@ $('.login').find('button').on('click', function() {
                 data: JSON.stringify(loginUserObject),
                 contentType: 'application/json'
             })
-            //if call is succefull
+            //if call is successful
             .done(function (result) {
                 console.log(result);
-                // $('section').hide();
-                // $('.navbar').show();
-                // $('#user-dashboard').show();
-                // $('#loggedInName').text(result.name);
                 $('#loggedInUserName').val(result.username);
                 $('#loggedInName').val(`${result.firstName} ${result.lastName}`);
                 //            htmlUserDashboard();
@@ -352,6 +313,7 @@ $('.go-logout').on('click', function() {
     location.reload();
 })
 
+// Get my posts
 $('#go-acct').on('click', function() {
     event.preventDefault();
 
@@ -395,6 +357,7 @@ function htmlUserDashboard(resultsObject) {
     });
 }
 
+// Create new post
 $('.create-post').find('button').on('click', function() {
     event.preventDefault();
     console.log('creating new post');
@@ -451,6 +414,7 @@ $('.create-post').find('button').on('click', function() {
                 //if call is succefull
                 .done(function (result) {
                     console.log(result);
+                    $('#no-entry').hide();
                     // $('section').hide();
                     // $('.navbar').show();
                     // $('#user-dashboard').show();
@@ -491,9 +455,9 @@ $('#user-list').on('click', '.edit-button', function() {
     event.preventDefault();
 
     const parentDiv = $(this).closest('.entries-container');
-    const entryType = $(this).siblings().find(".addEntryType").val();
-    const inputTitle = $(this).siblings().find("#addInputTitle").val();
-    const inputContent = $(this).siblings().find("#addInputContent").val();
+    const entryType = $(this).siblings().find(".updateEntryType").val();
+    const inputTitle = $(this).siblings().find("#updateInputTitle").val();
+    const inputContent = $(this).siblings().find("#updateInputContent").val();
     const loggedInUserName = $("#loggedInUserName").val();
     const entryId = $(this).siblings().find('.inputEntryID').val();
 
