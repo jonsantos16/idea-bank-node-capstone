@@ -296,22 +296,17 @@ app.get('/search-entry/:query', function (req, res) {
             });
         });
 });
-app.get('/entry-seen/:user', function (req, res) {
+
+app.get('/entry/recipe', function (req, res) {
 
     Entry
         .find({
-            "entryType": "seen"
+            "entryType": "recipe"
         })
-        .sort('inputDate')
+        .sort('createdDate')
         .then(function (entries) {
-            let entriesOutput = [];
-            entries.map(function (entry) {
-                if (entry.loggedInUserName == req.params.user) {
-                    entriesOutput.push(entry);
-                }
-            });
             res.json({
-                entriesOutput
+                entries
             });
         })
         .catch(function (err) {
@@ -321,31 +316,82 @@ app.get('/entry-seen/:user', function (req, res) {
             });
         });
 });
-app.get('/entry-performed/:user', function (req, res) {
 
+app.get('/entry/activities', function(req, res) {
     Entry
         .find({
-            "entryType": "performed"
+            "entryType": "activities"
         })
-        .sort('inputDate')
-        .then(function (entries) {
-            let entriesOutput = [];
-            entries.map(function (entry) {
-                if (entry.loggedInUserName == req.params.user) {
-                    entriesOutput.push(entry);
-                }
-            });
+        .sort('createdDate')
+        .then(function(entries) {
             res.json({
-                entriesOutput
+                entries
             });
         })
-        .catch(function (err) {
+        .catch(function(err) {
             console.error(err);
-            res.status(500).json({
+            res,status(500).json({
                 message: 'Internal server error'
             });
-        });
-});
+        })
+})
+
+app.get('/entry/org-opt', function(req, res) {
+    Entry
+        .find({
+            "entryType": "org/opt"
+        })
+        .sort('createdDate')
+        .then(function(entries) {
+            res.json({
+                entries
+            });
+        })
+        .catch(function(err) {
+            console.error(err);
+            res,status(500).json({
+                message: 'Internal server error'
+            });
+        })
+})
+
+app.get('/entry/outreach', function(req, res) {
+    Entry
+        .find({
+            "entryType": "outreach"
+        })
+        .sort('createdDate')
+        .then(function(entries) {
+            res.json({
+                entries
+            });
+        })
+        .catch(function(err) {
+            console.error(err);
+            res,status(500).json({
+                message: 'Internal server error'
+            });
+        })
+})
+
+app.get('/entry/decor', function(req, res) {
+    Entry
+        .find({
+            "entryType": "decor"
+        })
+        .sort('createdDate')
+        .then(function(entries) {
+            res.json({
+                entries
+            });
+        })
+        .catch(function(err) {
+            console.error(err);
+            res,status(500).json({
+                message: 'Internal server error'
+            });
+        })
+})
 
 // accessing a single achievement by id
 app.get('/entry/:id', function (req, res) {

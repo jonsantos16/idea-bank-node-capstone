@@ -38,9 +38,9 @@ function addEntryRenderHTML(results) {
     htmlString += `<div class="js-edit-entry" style="display: none;">`;
     htmlString += `<form action="" class="edit-entry-form">`;
     htmlString += `<fieldset>`;
-    htmlString += `<label><span>Title: </span><input name="new-title" id="updateInputTitle" type="text" value="${results.inputTitle}"></label>`;
+    htmlString += `<label><span>Title: </span><input name="new-title" class="updateInputTitle" type="text" value="${results.inputTitle}"></label>`;
     htmlString += `<label><input type="hidden" class="inputEntryID" value="${results._id}"></label>`;
-    htmlString += `<label><span>Content: </span><textarea rows=5 cols="30" id="updateInputContent" class="upload" value="">${results.inputContent}</textarea></label>`;
+    htmlString += `<label><span>Content: </span><textarea rows=5 cols="30" class="updateInputContent" class="upload" value="">${results.inputContent}</textarea></label>`;
 
     htmlString += `<label>`;
     htmlString += `<span>Type: </span>`;
@@ -105,6 +105,39 @@ function addEntryRenderHTML(results) {
     return htmlString;
 }
 
+function searchEntryRenderHtml(results) {
+    console.log(results);
+    let htmlString = ``;
+
+    htmlString += `<div class="entries-container row" id="${results._id}">`;
+
+    htmlString += `<div class="entry-div ${results.entryType}">`;
+
+    // Title & Author
+    htmlString += `<span class="entry-info title">`;
+    htmlString += `<p>${results.inputTitle}</p>`;
+    htmlString += `<span class="author"> by ${results.inputAuthor}</span>`;
+    htmlString += `<input type="hidden" class="inputEntryID"  value="${results._id}">`;
+    htmlString += `</span>`;
+    
+    // Created Date
+    htmlString += `<span class="entry-info date">`;
+    htmlString += `<p class="info-label">Posted on ${results.createdDate}</p>`;
+    htmlString += `</span>`;
+
+    // Content
+    htmlString += `<span class="entry-info content">`
+    htmlString += `<p>${results.inputContent}</p>`;
+    htmlString += `</span>`;
+    htmlString += `</div>`;
+
+    // Entry Type
+    htmlString += `<span class="entry-info type info-label">Category: ${results.entryType}</span>`;
+    htmlString += `</div>`;
+
+    return htmlString;
+}
+
 // Shows one section only
 function showSignUp() {
     $('#login-page').hide();
@@ -115,6 +148,7 @@ function showSignUp() {
     $('.search-bar').hide();
     $('.menu-items').hide();
     $('#signup-page').show();
+    $('.search-results').hide();
 }
 
 function showLogin() {
@@ -126,6 +160,7 @@ function showLogin() {
     $('.search-bar').hide();
     $('.menu-items').hide();
     $('#login-page').show();
+    $('.search-results').hide();
 }
 
 function showLanding() {
@@ -137,6 +172,7 @@ function showLanding() {
     $('.landing-page').show();
     $('.search-bar').show();
     $('.menu-items').show();
+    $('.search-results').hide();
 }
 
 function showAccount() {
@@ -148,6 +184,7 @@ function showAccount() {
     $('.my-account').show();
     $('.search-bar').show();
     $('.menu-items').show();
+    $('.search-results').hide();
 }
 
 function showOnePost() {
@@ -159,6 +196,7 @@ function showOnePost() {
     $('.view-one').show();
     $('.search-bar').show();
     $('.menu-items').show();
+    $('.search-results').hide();
 }
 
 function showNewPost() {
@@ -170,6 +208,19 @@ function showNewPost() {
     $('.new-post').show();
     $('.search-bar').show();
     $('.menu-items').show();
+    $('.search-results').hide();
+}
+
+function showSearchResults() {
+    $('#login-page').hide();
+    $('#signup-page').hide();
+    $('.my-account').hide();
+    $('.new-post').hide();
+    $('.landing-page').hide();
+    $('.view-one').hide();
+    $('.search-bar').show();
+    $('.menu-items').show();
+    $('.search-results').show();
 }
 
 function handleClicks() {
@@ -425,6 +476,7 @@ $('.create-post').find('button').on('click', function() {
 
                     //Add Entry to page
                     showAccount();
+                    $('#user-list').html("");
                     $('#user-list').prepend(addEntryRenderHTML(result));
                     $('html, body').animate({
                         scrollTop: $(`#${result._id}`).offset().top
@@ -456,8 +508,8 @@ $('#user-list').on('click', '.edit-button', function() {
 
     const parentDiv = $(this).closest('.entries-container');
     const entryType = $(this).siblings().find(".updateEntryType").val();
-    const inputTitle = $(this).siblings().find("#updateInputTitle").val();
-    const inputContent = $(this).siblings().find("#updateInputContent").val();
+    const inputTitle = $(this).siblings().find(".updateInputTitle").val();
+    const inputContent = $(this).siblings().find(".updateInputContent").val();
     const loggedInUserName = $("#loggedInUserName").val();
     const entryId = $(this).siblings().find('.inputEntryID').val();
 
@@ -590,4 +642,163 @@ $('.search-bar').find('button').on('click', function() {
         });
 })
 
+$('#recipe-search').on('click', function() {
+    event.preventDefault();
 
+    $.ajax({
+        type: 'GET',
+        url: `/entry/recipe`,
+        dataType: 'json',
+        contentType: 'application/json'
+    })
+    .done(function(result) {
+        console.log(result);
+        if (result.entries.length === 0) {
+
+            $('#show-results').html("");
+            $('#show-results').html('<p id="no-entry">No Entries in that category yet. Why not add one?</p>');
+        } else {
+            $('#show-results').html("");
+        }
+        htmlSearchDashboard(result);
+
+        showSearchResults();
+
+    })
+    .fail(function(jqXHR, error,errorThrown) {
+        console.log(jqXHR);
+        console.log(error);
+        console.log(errorThrown);
+    })
+})
+
+$('#activities-search').on('click', function() {
+    event.preventDefault();
+
+    $.ajax({
+        type: 'GET',
+        url: `/entry/activities`,
+        dataType: 'json',
+        contentType: 'application/json'
+    })
+    .done(function(result) {
+        console.log(result);
+        if (result.entries.length === 0) {
+
+            $('#show-results').html("");
+            $('#show-results').html('<p id="no-entry">No Entries in that category yet. Why not add one?</p>');
+        } else {
+            $('#show-results').html("");
+        }
+        htmlSearchDashboard(result);
+
+        showSearchResults();
+
+    })
+    .fail(function(jqXHR, error,errorThrown) {
+        console.log(jqXHR);
+        console.log(error);
+        console.log(errorThrown);
+    })
+})
+
+$('#org-opt-search').on('click', function() {
+    event.preventDefault();
+
+    $.ajax({
+        type: 'GET',
+        url: `/entry/org-opt`,
+        dataType: 'json',
+        contentType: 'application/json'
+    })
+    .done(function(result) {
+        console.log(result);
+        if (result.entries.length === 0) {
+
+            $('#show-results').html("");
+            $('#show-results').html('<p id="no-entry">No Entries in that category yet. Why not add one?</p>');
+        } else {
+            $('#show-results').html("");
+        }
+        htmlSearchDashboard(result);
+
+        showSearchResults();
+
+    })
+    .fail(function(jqXHR, error,errorThrown) {
+        console.log(jqXHR);
+        console.log(error);
+        console.log(errorThrown);
+    })
+})
+
+$('#outreach-search').on('click', function() {
+    event.preventDefault();
+
+    $.ajax({
+        type: 'GET',
+        url: `/entry/outreach`,
+        dataType: 'json',
+        contentType: 'application/json'
+    })
+    .done(function(result) {
+        console.log(result);
+        if (result.entries.length === 0) {
+
+            $('#show-results').html("");
+            $('#show-results').html('<p id="no-entry">No Entries in that category yet. Why not add one?</p>');
+        } else {
+            $('#show-results').html("");
+        }
+
+        htmlSearchDashboard(result);
+
+        showSearchResults();
+
+    })
+    .fail(function(jqXHR, error,errorThrown) {
+        console.log(jqXHR);
+        console.log(error);
+        console.log(errorThrown);
+    })
+})
+
+$('#decor-search').on('click', function() {
+    event.preventDefault();
+
+    $.ajax({
+        type: 'GET',
+        url: `/entry/decor`,
+        dataType: 'json',
+        contentType: 'application/json'
+    })
+    .done(function(result) {
+        console.log(result);
+        
+        showSearchResults();
+
+        if (result.entries.length === 0) {
+
+            $('#show-results').html("");
+            $('#show-results').html('<p id="no-entry">No Entries in that category yet. Why not add one?</p>');
+        } else {
+            $('#show-results').html("");
+        }
+
+        htmlSearchDashboard(result);
+
+
+    })
+    .fail(function(jqXHR, error,errorThrown) {
+        console.log(jqXHR);
+        console.log(error);
+        console.log(errorThrown);
+    })
+})
+
+function htmlSearchDashboard(resultsObject) {
+    console.log(resultsObject.entries);
+    $.each(resultsObject.entries, function (key, value) {
+        $('#show-results').append(searchEntryRenderHtml(value));
+    });
+}

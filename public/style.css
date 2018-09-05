@@ -302,6 +302,16 @@ section img {
     font-size: 15px;
 }
 
+/* Search results */
+#show-results .entries-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#no-entry {
+    text-align: center;
+}
+
 
 
 
