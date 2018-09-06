@@ -35,7 +35,7 @@ table {
 
 html {
     /* background-image: url(images/notebook-bg-1.jpg); */
-    background-color: #ffffe6;
+    /* background-color: #ffffe6; */
     background-repeat: no-repeat;
     background-repeat: cover;
 }
@@ -66,6 +66,7 @@ h6 {
 
 
 
+
 /* Main */
 html {
     /* background-image: url(images/); */
@@ -76,9 +77,12 @@ a {
     text-decoration: none;
 }
 
-a:hover {
-    width: 120%;
-    font-size: 22px;
+li:hover {
+    /* width: 120%; */
+    /* font-size: 22px; */
+    border: 1px solid yellow;
+    border-radius: 3%;
+    background-color: yellow;
 }
 
 a:link, a:visited {
@@ -123,6 +127,7 @@ nav img {
 
 .nav {
     position: relative;
+    background-color: white;
 }
 
 .menu-items ul {
@@ -175,7 +180,9 @@ fieldset {
 
 /* Results */
 section img {
-    width: 95%;
+    /* width: 95%; */
+    height: 198.95px;
+    width: 100%;
 }
 
 .results .row {
@@ -312,8 +319,94 @@ section img {
     text-align: center;
 }
 
+.entries-container span {
+    width: 100%;
+}
 
 
 
 
 
+/* Categories pictures */
+.container {
+    position: relative;
+    width: 50%;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: #4CAF50;
+  opacity: 0.7;
+  color: white;
+  /* color: black; */
+  font-size: 28px;
+  padding: 16px 32px;
+}
+
+#recipe-search {
+    font-family: 'Courgette', cursive;
+}
+
+#decor-search {
+    font-family: 'Fredericka the Great', cursive;
+}
+
+#activities-search {
+    font-family: 'Love Ya Like A Sister', cursive;
+}
+
+#outreach-search {
+    font-family: 'Poiret One', cursive
+}
+
+#org-opt-search {
+    font-family: 'Roboto Mono', monospace;
+}
+/* Footer */
+footer {
+    /* position: fixed; */
+    bottom: 0;
+    text-align: center;
+    margin: auto;
+    background-color: rgb(159, 223, 159, 0.8);
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-top: 25px;
+}
+
+footer li {
+    display: inline-block;
+    list-style-type: none; 
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+footer ul {
+    margin-top: 20px;
+}

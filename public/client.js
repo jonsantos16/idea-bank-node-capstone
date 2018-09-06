@@ -244,7 +244,6 @@ function handleClicks() {
 showLogin();
 $(handleClicks());
 
-
 $('.login').find('button').on('click', function() {
     event.preventDefault();
 
@@ -420,6 +419,7 @@ $('.create-post').find('button').on('click', function() {
         const loggedInName = $("#loggedInName").val();
         const loggedInUserName = $('#loggedInUserName').val();
         var createdDate = new Date();
+        const parentForm = $(this).closest('form');
 
         let month = createdDate.getMonth() + 1;
         let date = createdDate.getDate();
@@ -466,13 +466,8 @@ $('.create-post').find('button').on('click', function() {
                 .done(function (result) {
                     console.log(result);
                     $('#no-entry').hide();
-                    // $('section').hide();
-                    // $('.navbar').show();
-                    // $('#user-dashboard').show();
-                    // $('#loggedInName').text(result.name);
-                    // $('#loggedInUserName').val(result.username);
-                    // $('#add-entry-container').hide();
-                    //                noEntries();
+                    
+                    $(parentForm).find("input[type=text], textarea").val("");
 
                     //Add Entry to page
                     showAccount();
@@ -481,10 +476,9 @@ $('.create-post').find('button').on('click', function() {
                     $('html, body').animate({
                         scrollTop: $(`#${result._id}`).offset().top
                     }, 1000);
+
+                    $(this).closest('form').find("input[type=text], textarea").val("");
     
-                    //                $().scrollTop();
-    
-                    //                updateEditFormValues(result);
                 })
                 //if the call is failing
                 .fail(function (jqXHR, error, errorThrown) {
@@ -497,7 +491,7 @@ $('.create-post').find('button').on('click', function() {
 
 // Edit my posts    
 $('#user-list').on('click', '#edit-this', function() {
-    // event.preventDefault();
+    event.preventDefault();
     console.log('updating');
     // console.log(this);
     $(this).parents('.entry-div').siblings('.js-edit-entry').show();
@@ -565,7 +559,7 @@ $('#user-list').on('click', '.edit-button', function() {
 
 // Delete my posts
 $('#user-list').on('click', '#delete-this', function() {
-    // event.preventDefault();
+    event.preventDefault();
     console.log('deleting');
     $(this).parents('.entry-div').siblings('.js-delete-entry').show();
 });
@@ -590,9 +584,9 @@ $('#user-list').on('click', '.delete-button', function() {
             $('.js-delete-entry').hide();
             $(parentDiv).remove();
 
-            $('html, body').animate({
-                scrollTop: $('.navbar').offset().top
-            }, 1000);
+            // $('html, body').animate({
+            //     scrollTop: $('.navbar').offset().top
+            // }, 1000);
 
     })
         //if the call is failing
@@ -606,8 +600,8 @@ $('#user-list').on('click', '.delete-button', function() {
 $('#user-list').on('click', '.cancel-button', function() {
     event.preventDefault();
     
-    $('.js-delete-entry').hide();
-    $('.js-edit-entry').hide();
+    $(this).closest('.js-delete-entry').hide();
+    $(this).closest('.js-edit-entry').hide();
     $('html, body').animate({
         scrollTop: $(this).closest('.entries-container').offset().top
     }, 1000);

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width">
     <title>Eureka - Share Your Ideas</title>
     <link href="https://fonts.googleapis.com/css?family=Kalam|Shadows+Into+Light" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Courgette|Fredericka+the+Great|Love+Ya+Like+A+Sister|Playfair+Display|Poiret+One|Roboto+Mono|Shadows+Into+Light+Two" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet" type="text/css" />
     <link href="grid.css" rel="stylesheet" type="text/css" />
@@ -23,10 +24,14 @@
                 </div>
                 <div class="menu-items col-3">
                     <ul>
-                        <li><a id="go-home" href="#"><i class="fas fa-home"></i></a></li>
+                        <!-- <li><a id="go-home" href="#"><i class="fas fa-home"></i></a></li>
                         <li><a id="go-new" href="#"><i class="fas fa-sticky-note"></i></a></li>
                         <li><a id="go-acct" href="#"><i class="fas fa-lightbulb"></i></a></li>
-                        <li><a class="go-logout" href="#"><i class="fas fa-sign-out-alt"></i></a></li>
+                        <li><a class="go-logout" href="#"><i class="fas fa-sign-out-alt"></i></a></li> -->
+                        <li><a id="go-home" href="#">Home</a></li>
+                        <li><a id="go-new" href="#">New Idea</a></li>
+                        <li><a id="go-acct" href="#">My Ideas</a></li>
+                        <li><a class="go-logout" href="#">Logout</a></li>
                     </ul>
                 </div>  
         </div>    
@@ -74,27 +79,42 @@
 
         <section class="landing-page">
             <div class="query-string">
-                
+                <h2></h2>
             </div>
             <div class="results">
                 <div class="row">
-                    <div class="col-3 option">
-                        <a href="#" id="recipe-search"><img src="images/recipes.jpg" alt="Search for Recipes"></a>
+                    <div class="col-3 option container">
+                        <a href="#" id="recipe-search"><img src="images/recipes2.jpg" alt="Search for Recipes" class="image">
+                        <div class="middle">
+                            <div class="text">Recipes</div>
+                        </div></a>
                         
                     </div>
-                    <div class="col-3 option">
-                        <a href="#" id="activities-search"><img src="images/activities.jpg" alt="Search for Activities"></a>
+                    <div class="col-3 option container">
+                        <a href="#" id="activities-search"><img src="images/activities2.jpg" alt="Search for Activities" class="image">
+                        <div class="middle">
+                            <div class="text">Activities</div>
+                        </div></a>
                     </div>
-                    <div class="col-3 option">
-                        <a href="#" id="org-opt-search"><img src="images/org_opt.jpg" alt="Search for Organization and Optimization"></a>
+                    <div class="col-3 option container">
+                        <a href="#" id="org-opt-search"><img src="images/org_opt2.jpg" alt="Search for Organization and Optimization" class="image">
+                        <div class="middle">
+                            <div class="text">Organization and Optimization</div>
+                        </div></a>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-3 option">
-                        <a href="#" id="outreach-search"><img src="images/outreach.jpg" alt="Search for Outreach"></a>
+                    <div class="col-3 option container">
+                        <a href="#" id="outreach-search"><img src="images/outreach2.jpg" alt="Search for Outreach"class="image">
+                        <div class="middle">
+                            <div class="text">Outreach</div>
+                        </div></a>
                     </div>
-                    <div class="col-3 option">
-                        <a href="#" id="decor-search"><img src="images/decor.jpg" alt="Search for Decor"></a>
+                    <div class="col-3 option container">
+                        <a href="#" id="decor-search"><img src="images/decor2.jpg" alt="Search for Decor" class="image">
+                        <div class="middle">
+                            <div class="text">Decor</div>
+                        </div></a>
                     </div>
                     <!-- <div class="col-3 option">
                         <h4><a href="#">Title</a></h4>
@@ -154,6 +174,13 @@
             </div>
         </section>
     </main>
+    <footer role="contentinfo">
+        <p>© Jonathan Santos</p>
+        <ul>
+            <li><a href="https://github.com/jonsantos16" target="blank">GitHub</a></li>
+            <li><a href="mailto:santosjn94@gmail.com" target="_top">Email</a></li>
+        </ul>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="client.js"></script>
     </body>
