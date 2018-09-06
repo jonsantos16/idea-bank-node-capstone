@@ -209,6 +209,7 @@ app.post('/entry/create', (req, res) => {
         }
         if (item) {
             return res.json(item);
+            // return res.status(201);
         }
     });
 });
@@ -393,22 +394,22 @@ app.get('/entry/decor', function(req, res) {
         })
 })
 
-// accessing a single achievement by id
-app.get('/entry/:id', function (req, res) {
-    Entry
-        .findById(req.params.id).exec().then(function (entry) {
-            return res.json(entry);
-        })
-        .catch(function (entries) {
-            console.error(err);
-            res.status(500).json({
-                message: 'Internal Server Error'
-            });
-        });
-});
+// accessing a single entry by id
+// app.get('/entry/:id', function (req, res) {
+//     Entry
+//         .findById(req.params.id).exec().then(function (entry) {
+//             return res.json(entry);
+//         })
+//         .catch(function (entries) {
+//             console.error(err);
+//             res.status(500).json({
+//                 message: 'Internal Server Error'
+//             });
+//         });
+// });
 
 // DELETE ----------------------------------------
-// deleting an achievement by id
+// deleting an entry by id
 app.delete('/entry/:id', function (req, res) {
     Entry.findByIdAndRemove(req.params.id).exec().then(function (entry) {
         return res.status(204).end();
