@@ -125,4 +125,8 @@ describe('eureka-node-capstone', function() {
                 expect(post.entryType).to.equal(updatePost.entryType);
             })
     })
+
+    it('should get an entry on GET', function() {
+        
+    })
 })

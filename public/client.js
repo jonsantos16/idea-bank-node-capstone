@@ -342,12 +342,6 @@ $('.signup').find('button').on('click', function() {
             //if call is succefull
             .done(function (result) {
                 console.log(result);
-                // $('#loggedInName').text(result.name);
-                // $('#loggedInUserName').val(result.username);
-                // $('section').hide();
-                // $('.navbar').show();
-                // $('#user-dashboard').show();
-                // populateUserDashboardDate(result.username);
                 showLogin();
             })
             //if the call is failing
@@ -602,9 +596,9 @@ $('#user-list').on('click', '.cancel-button', function() {
     
     $(this).closest('.js-delete-entry').hide();
     $(this).closest('.js-edit-entry').hide();
-    $('html, body').animate({
-        scrollTop: $(this).closest('.entries-container').offset().top
-    }, 1000);
+    // $('html, body').animate({
+    //     scrollTop: $(this).closest('.entries-container').offset().top
+    // }, 1000);
 })
 
 // Query search
