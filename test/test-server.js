@@ -13,6 +13,7 @@ const faker = require('faker');
 const expect = chai.expect;
 
 let Entry = require('../models/entry.js');
+let USer = require('../models/user.js')
 const { TEST_DATABASE_URL } = require('../config');
 
 chai.use(chaiHttp);
@@ -126,7 +127,34 @@ describe('eureka-node-capstone', function() {
             })
     })
 
-    it('should get an entry on GET', function() {
-        
+    it('should get a category of entries on GET', function() {
+        let category = generateRandomType();
+        let resEntry;
+        return chai.request(app)
+            .get(`/entry/${category}`)
+            .then(function(res) {
+                expect(res).to.be.json;
+                expect(res).to.have.status(200);
+                expect(res).to.be.a('array');
+
+                res.body.forEach(function(post) {
+                    expect(post).to.be.a('object');
+                    expect(post).to.include.keys(
+                        _id, inputTitle, inputAuthor, inputContent, entryType
+                    )
+                    expect(post.entryType).to.equal(category);
+                })
+
+                // resEntry = res.body[0]
+                // return Entry.findById(resEntry._id)
+            })
+    })
+
+    it('should get entries for one user on GET', function() {
+
+    })
+
+    it('should return an entry matching a specific query on GET', function() {
+
     })
 })
