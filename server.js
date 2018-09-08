@@ -267,16 +267,16 @@ app.get('/get-entry-by-user/:user', function (req, res) {
 });
 app.get('/search-entry/:query', function (req, res) {
     console.log(req.params.query);
-    db.entries.createIndex({
-        "$**": "text"
-    })
-    
+    // db.entries.createIndex({
+    //     "$**": "text"
+    // })
+    let searchTerm = req.params.query;
+
     Entry
-        .find({
-            $text: { $search: req.params.query }
-            // inputTitle:  req.param.query,
-            // inputContent: req.params.query
-        })
+    .find(
+        {inputTitle: {$regex: searchTerm, $options: "i" }}
+        // {inputContent: {$regex: searchTerm, $options: "i" }}
+    )
         .sort('createdDate')
         .then(function (entries) {
             console.log(entries);
@@ -325,6 +325,7 @@ app.get('/entry/activities', function(req, res) {
         })
         .sort('createdDate')
         .then(function(entries) {
+            console.log(entries);
             res.json({
                 entries
             });

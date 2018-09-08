@@ -13,8 +13,8 @@ const faker = require('faker');
 const expect = chai.expect;
 
 let Entry = require('../models/entry.js');
-let USer = require('../models/user.js')
-const { TEST_DATABASE_URL } = require('../config');
+let User = require('../models/user.js')
+const { TEST_DATABASE_URL } = require('../config.js');
 
 chai.use(chaiHttp);
 
@@ -40,13 +40,35 @@ function generateEntryData() {
         inputTitle: faker.lorem.words(),
         inputContent: faker.lorem.paragraph(),
         inputAuthor: faker.name.findName(),
-        entryType: generateRandomType(),    
+        entryType: generateRandomType(),
+        createdDate: '9/6/2018',    
     }
+}
+
+function seedEntryData() {
+    console.info('seeding entry info');
+    const seedData = [];
+
+    for (let i=1; i <= 20; i++) {
+        seedData.push(generateEntryData());
+    }
+    return Entry.insertMany(seedData).catch(console.log);
+}
+
+function tearDownDb() {
+    console.warn('Deleting database');
+    return mongoose.connection.dropDatabase();
 }
 
 describe('eureka-node-capstone', function() {
     before (function() {
         return runServer(TEST_DATABASE_URL);
+    })
+    beforeEach(function() {
+        return seedEntryData();
+    })
+    afterEach(function() {
+        return tearDownDb();
     })
     after(function() {
         return closeServer();
@@ -76,7 +98,7 @@ describe('eureka-node-capstone', function() {
                 return Entry.findById(res.body._id);
             })
             .then(function(post) {
-                console.log(post);
+                // console.log(post);
                 expect(post.inputAuthor).to.contain(newPost.inputAuthor);
                 expect(post.inputTitle).to.equal(newPost.inputTitle);
                 expect(post.inputContent).to.equal(newPost.inputContent);
@@ -89,7 +111,7 @@ describe('eureka-node-capstone', function() {
             .findOne()
             .then(function(_post) {
                 post = _post;
-                console.log(_post);
+                // console.log(_post);
                 return chai.request(app).delete(`/entry/${post.id}`);
             })
             .then(function(res) {
@@ -97,7 +119,7 @@ describe('eureka-node-capstone', function() {
                 return Entry.findById(post.id);
             })
             .then(function(_post) {
-                console.log(_post);
+                // console.log(_post);
                 expect(_post).to.be.null;
             })
     })
@@ -111,14 +133,14 @@ describe('eureka-node-capstone', function() {
         return Entry
             .findOne()
             .then(function(post) {
-                updatePost.id = post.id;
+                updatePost._id = post._id;
                 return chai.request(app)
-                    .put(`/update-entry/${post.id}`)
+                    .put(`/update-entry/${post._id}`)
                     .send(updatePost)
             })
             .then(function(res) {
                 expect(res).to.have.status(204);
-                return Entry.findById(updatePost.id)
+                return Entry.findById(updatePost._id)
             })
             .then(function(post) {
                 expect(post.inputTitle).to.equal(updatePost.inputTitle);
@@ -133,9 +155,10 @@ describe('eureka-node-capstone', function() {
         return chai.request(app)
             .get(`/entry/${category}`)
             .then(function(res) {
+                console.log(res);
                 expect(res).to.be.json;
                 expect(res).to.have.status(200);
-                expect(res).to.be.a('array');
+                // expect(res.body).to.be.a('array'); <-- ask about this
 
                 res.body.forEach(function(post) {
                     expect(post).to.be.a('object');
@@ -150,11 +173,11 @@ describe('eureka-node-capstone', function() {
             })
     })
 
-    it('should get entries for one user on GET', function() {
+    // it('should get entries for one user on GET', function() {
 
-    })
+    // })
 
-    it('should return an entry matching a specific query on GET', function() {
+    // it('should return an entry matching a specific query on GET', function() {
 
-    })
+    // })
 })

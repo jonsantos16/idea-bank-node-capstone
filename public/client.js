@@ -621,7 +621,17 @@ $('.search-bar').find('button').on('click', function() {
     })
         .done(function(result) {
             console.log(result);
-            value = undefined; 
+            value = undefined;
+            if (result.entries.length === 0) {
+                $('#show-results').html("");
+                $('#show-results').html('<p id="no-entry">No Entries in that category yet. Why not add one?</p>');
+            } else {
+                $('#show-results').html("");
+            }
+            htmlSearchDashboard(result);
+    
+            showSearchResults();
+
         })
         .fail(function (jqXHR, error, errorThrown) {
             console.log(jqXHR);
