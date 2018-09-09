@@ -98,7 +98,6 @@ describe('eureka-node-capstone', function() {
                 return Entry.findById(res.body._id);
             })
             .then(function(post) {
-                // console.log(post);
                 expect(post.inputAuthor).to.contain(newPost.inputAuthor);
                 expect(post.inputTitle).to.equal(newPost.inputTitle);
                 expect(post.inputContent).to.equal(newPost.inputContent);
@@ -111,7 +110,6 @@ describe('eureka-node-capstone', function() {
             .findOne()
             .then(function(_post) {
                 post = _post;
-                // console.log(_post);
                 return chai.request(app).delete(`/entry/${post.id}`);
             })
             .then(function(res) {
@@ -119,7 +117,6 @@ describe('eureka-node-capstone', function() {
                 return Entry.findById(post.id);
             })
             .then(function(_post) {
-                // console.log(_post);
                 expect(_post).to.be.null;
             })
     })
@@ -155,15 +152,16 @@ describe('eureka-node-capstone', function() {
         return chai.request(app)
             .get(`/entry/${category}`)
             .then(function(res) {
-                console.log(res);
+                console.log('res.body', res.body);
                 expect(res).to.be.json;
                 expect(res).to.have.status(200);
-                // expect(res.body).to.be.a('array'); <-- ask about this
+                expect(res.body.entries).to.be.a('array');
 
-                res.body.forEach(function(post) {
+                res.body.entries.forEach(function(post) {
+                    // console.log('post', post)
                     expect(post).to.be.a('object');
                     expect(post).to.include.keys(
-                        _id, inputTitle, inputAuthor, inputContent, entryType
+                        "_id", "inputTitle", "inputAuthor", "inputContent", "entryType"
                     )
                     expect(post.entryType).to.equal(category);
                 })
@@ -174,10 +172,29 @@ describe('eureka-node-capstone', function() {
     })
 
     // it('should get entries for one user on GET', function() {
-
+    //    
     // })
 
-    // it('should return an entry matching a specific query on GET', function() {
-
-    // })
+    it('should return an entry matching a specific query on GET', function() {
+        let queryEntry;
+        let queryId;
+        
+        return Entry
+            .findOne()
+            .then(function(post) {
+                queryEntry = post.inputTitle
+                queryId = post._id
+                console.log('queryEntry', queryEntry);
+                console.log('queryId', queryId);
+                return chai.request(app)
+                    .get(`/search-entry/${queryEntry}`)
+                    .then(function(res) {
+                        expect(res).to.have.status(200);
+                        expect(res).to.be.json;
+                        expect(res.body).to.be.a('object');
+                        expect(res.body).to.have.keys
+                        
+                    })
+            })
+    })
 })
