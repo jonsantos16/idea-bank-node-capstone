@@ -35,7 +35,7 @@ table {
 
 html {
     /* background-image: url(images/notebook-bg-1.jpg); */
-    /* background-color: #ffffe6; */
+    background-color: #ffffe6;
     background-repeat: no-repeat;
     background-repeat: cover;
 }
@@ -127,7 +127,7 @@ nav img {
 
 .nav {
     position: relative;
-    background-color: white;
+    /* background-color: white; */
 }
 
 .menu-items ul {
@@ -328,6 +328,11 @@ section img {
 
 
 /* Categories pictures */
+.query-string {
+    text-align: center;
+    margin-top: 20px;
+}
+
 .container {
     position: relative;
     width: 50%;
