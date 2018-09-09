@@ -31,7 +31,7 @@ This app is for three types of communities who want an easier way to share ideas
 ### UI Flow
 ![UI Flow handwritten draft](github-images/ui.jpg)
 
-### Wireframe _main
+### Wireframe
 ![Wireframe _Main](github-images/wireframe.jpg)
 
 ## Working Prototype
