@@ -5,11 +5,12 @@ The Eureka app is an idea-sharing platform made for organizations like para-chur
 
 Home Page View | Login Page View #2
 :-------------------------:|:-------------------------:
-![Home Page](https://github.com/KatiLong/shakespeare-passport-node-capstone/blob/master/github-images/home-page.jpg)  |  ![Login Page](https://github.com/KatiLong/shakespeare-passport-node-capstone/blob/master/github-images/login.jpg)
-User Dashboard | Seen Entry
-![User Dashboard](https://github.com/KatiLong/shakespeare-passport-node-capstone/blob/master/github-images/user-dashboard.jpg) | ![Seen Entry](https://github.com/KatiLong/shakespeare-passport-node-capstone/blob/master/github-images/seen-entry.jpg)
-Add Entry  | Edit Entry
-![Add Entry](https://github.com/KatiLong/shakespeare-passport-node-capstone/blob/master/github-images/add-entry.jpg) | ![Edit Entry](https://github.com/KatiLong/shakespeare-passport-node-capstone/blob/master/github-images/edit-entry.jpg)
+![Login Page](github-images/login.jpg)  |  ![Sign Up Page](github-images/signup.jpg)
+![Landing Page](github-images/landing.jpg)
+
+![New Entry Form](github-images/newpost.jpg) | ![My Entries](github-images/myposts.jpg)
+
+![Edit Entry](github-images/editmypost.jpg) | ![Delete Entry](github-images/deletemypost.jpg)
 Delete Entry |
 ![Delete Entry](https://github.com/KatiLong/shakespeare-passport-node-capstone/blob/master/github-images/delete-entry.jpg) |
 
