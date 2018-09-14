@@ -72,11 +72,19 @@
     .col-1 {
         width: 100%
     }
+
   }
 
   @media only screen and (max-width: 662px) {
     .signup, .login, .create-post {
       width: 65%;
+    }
+  }
+
+  @media only screen and (max-width: 639px) {
+    .container img {
+      width: 250px;
+      margin: 0 auto;
     }
   }
 
@@ -86,7 +94,7 @@
     }
   }
 
-  @media only screen and (max-width: 759px) {
+  @media only screen and (max-width: 900px) {
     .nav .col-3 {
       width: 100%;
     }

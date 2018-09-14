@@ -35,7 +35,7 @@ table {
 
 html {
     /* background-image: url(images/notebook-bg-1.jpg); */
-    background-color: #ffffe6;
+    /* background-color: #ffffe6; */
     background-repeat: no-repeat;
     background-repeat: cover;
 }
@@ -69,8 +69,17 @@ h6 {
 
 /* Main */
 html {
-    /* background-image: url(images/); */
     font-family: 'Kalam', cursive;
+}
+
+nav {
+    background-color: white;  
+}
+
+body {
+    background-image: url(images/bluelight.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 a {
@@ -91,6 +100,13 @@ a:link, a:visited {
 
 section {
     margin-top: 30px;
+}
+
+.bkgd-fill {
+    background: rgba(245, 245, 245, .6);
+    padding-top: 25px;
+    padding-bottom: 30px;
+    margin-top: 5px;
 }
 
 /* Nav */
@@ -143,6 +159,7 @@ nav img {
 .signup, .login, .create-post {
     font-family: 'Kalam', cursive;
     border: 1px solid black;
+    border-radius: 3%;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
@@ -328,6 +345,23 @@ section img {
 
 
 /* Categories pictures */
+.intro-text {
+    width: 80%;
+    border: 1px solid black;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 10px; 
+}
+
+.intro {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.bkgd-fill, .category-search {
+    margin-top: 25px;
+}
+
 .query-string {
     text-align: center;
     margin-top: 20px;
@@ -398,11 +432,22 @@ footer {
     bottom: 0;
     text-align: center;
     margin: auto;
-    background-color: rgb(159, 223, 159, 0.8);
+    /* background-color: rgb(159, 223, 159, 0.8); */
+    background-color: black;
+    color: white;
     width: 100%;
     padding-top: 15px;
     padding-bottom: 15px;
     margin-top: 25px;
+}
+
+footer a:link, footer a:visited {
+    color: white;
+}
+
+footer a:hover {
+    background-color: yellow;
+    color: black;
 }
 
 footer li {

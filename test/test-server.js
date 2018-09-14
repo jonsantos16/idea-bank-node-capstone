@@ -171,10 +171,6 @@ describe('eureka-node-capstone', function() {
             })
     })
 
-    // it('should get entries for one user on GET', function() {
-    //    
-    // })
-
     it('should return an entry matching a specific query on GET', function() {
         let queryEntry;
         let queryId;
