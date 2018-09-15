@@ -68,6 +68,15 @@ h6 {
 
 
 /* Main */
+html, body {
+    /* height: 100%; */
+}
+
+main {
+    /* min-height: 100%; */
+    position: relative;
+}
+
 html {
     font-family: 'Kalam', cursive;
 }
@@ -80,6 +89,7 @@ body {
     background-image: url(images/bluelight.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    margin: 0;
 }
 
 a {
@@ -428,8 +438,8 @@ section img {
 }
 /* Footer */
 footer {
-    /* position: fixed; */
-    bottom: 0;
+    /* position: absolute; */
+    /* bottom: 0; */
     text-align: center;
     margin: auto;
     /* background-color: rgb(159, 223, 159, 0.8); */
@@ -439,6 +449,8 @@ footer {
     padding-top: 15px;
     padding-bottom: 15px;
     margin-top: 25px;
+    /* position: absolute;
+    bottom: 0; */
 }
 
 footer a:link, footer a:visited {
