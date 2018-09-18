@@ -4,7 +4,6 @@
     "description": "The Eureka app is an idea-sharing platform made for organizations like para-churches to connect ideas that different members have to benefit the community at large. It allows ideas to be shared so all users, regardless of physical location, and quickly see and learn how to implement the idea.",
     "main": "server.js",
     "dependencies": {
-        "bcrypt": "^3.0.0",
         "bcryptjs": "^2.4.3",
         "body-parser": "^1.18.3",
         "cors": "^2.8.4",
