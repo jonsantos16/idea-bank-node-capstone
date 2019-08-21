@@ -95,7 +95,8 @@ nav {
 }
 
 body {
-    background-image: url(images/bluelight.jpg);
+    /* background-image: url(images/bluelight.jpg); */
+    background-color: #b3e6ff;
     background-size: cover;
     background-repeat: no-repeat;
     margin: 0;
@@ -189,6 +190,24 @@ nav img {
 .signup label, .login label, .create-post label {
     display: block;
     width: 100%;
+}
+
+#login-page h6 {
+    line-height: 2;
+}
+
+#login-page a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#signup-page h6 {
+    line-height: 2;
+}
+
+#signup-page a:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 span {
