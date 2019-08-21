@@ -69,7 +69,7 @@ h6 {
 
 /* Main */
 html, body {
-    /* height: 100%; */
+    height: 100%;
 }
 
 main {
@@ -80,6 +80,15 @@ main {
 html {
     font-family: 'Kalam', cursive;
 }
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+  }
+  
+  #content-wrap {
+    padding-bottom: 6rem;    /* Footer height */
+  }
 
 nav {
     background-color: white;  
@@ -438,8 +447,9 @@ section img {
 }
 /* Footer */
 footer {
-    /* position: absolute; */
-    /* bottom: 0; */
+    position: absolute;
+    bottom: 0;
+    height: 6rem;
     text-align: center;
     margin: auto;
     /* background-color: rgb(159, 223, 159, 0.8); */
