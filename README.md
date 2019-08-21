@@ -4,25 +4,25 @@ The Eureka app is an idea-sharing platform made for organizations like para-chur
 ## Screenshots
 
 ### Login Page 
-![Login Page](github-images/login-pg.png)  
+![Login Page](github-images/login-pg2.png)  
 
 ### Sign Up Page
-![Sign Up Page](github-images/signin-pg.png)
+![Sign Up Page](github-images/signin-pg2.png)
 
 ### Landing Page
-![Landing Page](github-images/landing-pg.png)
+![Landing Page](github-images/landing-pg2.png)
 
 ### New Entry Page
-![New Entry Form](github-images/new-post.png) 
+![New Entry Form](github-images/new-post2.png) 
 
 ### My Entries Page
-![My Entries](github-images/posts.png)
+![My Entries](github-images/posts2.png)
 
 ### Edit Entry Page
-![Edit Entry](github-images/edit-post.png) 
+![Edit Entry](github-images/edit-post2.png) 
 
 ### Delete Entry Page
-![Delete Entry](github-images/delete-post.png)
+![Delete Entry](github-images/delete-post2.png)
 
 
 ## User Cases
